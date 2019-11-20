@@ -7,6 +7,7 @@ import java.util.Date;
 @Table(name="pos_mst_category")
 public class MstCategory {
 
+
     @Id
     @Column(name="id")
     private int id;
