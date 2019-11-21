@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Detail User Page</title>
-<%--    <link type="text/css" href="<c:url value='/assets/css/bootstrap.min.css' />" rel="stylesheet"/>--%>
+    <link type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet"/>
 </head>
 <body>
 
@@ -19,7 +19,6 @@
             <th width="120">Address</th>
             <th width="120">Phone</th>
             <th width="120">Email</th>
-            <th width="60">Action</th>
 
         </tr>
             <tr>

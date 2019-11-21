@@ -24,13 +24,13 @@ public class MstSupplier {
     private int regionId;
     @Column(name = "district_id")
     private int districtId;
-    @Column(name = "created_by")
+    @Column(name = "created_by", nullable = true)
     private int createdBy;
-    @Column(name = "created_on")
+    @Column(name = "created_on", nullable = true)
     private Date createdOn;
-    @Column(name = "modified_by")
+    @Column(name = "modified_by", nullable = true)
     private int modifiedBy;
-    @Column(name = "modified_on")
+    @Column(name = "modified_on", nullable = true)
     private Date modifiedOn;
     @Column(name = "active")
     private int active;
@@ -42,7 +42,6 @@ public class MstSupplier {
     @ManyToOne(targetEntity = MstRegion.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "region_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstRegion mstRegion;
-
 
     @ManyToOne(targetEntity = MstProvince.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "province_id", referencedColumnName = "id", insertable = false, updatable = false)

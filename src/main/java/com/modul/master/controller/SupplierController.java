@@ -20,6 +20,12 @@ public class SupplierController {
     @Autowired
     SupplierService supplierService;
 
+    @Autowired
+    LocationService locationService;
+
+    public void setLocationService(LocationService locationService) {
+        this.locationService = locationService;
+    }
 
     //get all suppliers
     @RequestMapping("/suppliers")

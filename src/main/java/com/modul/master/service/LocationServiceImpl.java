@@ -13,6 +13,7 @@ public class LocationServiceImpl implements LocationService{
     @Autowired
     LocationDao locationDao;
 
+
     @Override
     public MstProvince getProvinceById(int province_id) {
         return locationDao.getProvinceById(province_id);
