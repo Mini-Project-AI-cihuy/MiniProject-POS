@@ -24,6 +24,8 @@ public class MstSupplier {
     private int regionId;
     @Column(name = "district_id")
     private int districtId;
+    @Column(name = "postal_code")
+    private String postalCode;
     @Column(name = "created_by", nullable = true)
     private int createdBy;
     @Column(name = "created_on", nullable = true)
@@ -109,6 +111,14 @@ public class MstSupplier {
 
     public void setDistrictId(int districtId) {
         this.districtId = districtId;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
     public int getCreatedBy() {

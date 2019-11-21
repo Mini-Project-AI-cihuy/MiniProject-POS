@@ -1,11 +1,14 @@
 package com.modul.master.controller;
 
+import com.modul.master.model.MstDistrict;
 import com.modul.master.model.MstProvince;
+import com.modul.master.model.MstRegion;
 import com.modul.master.model.MstSupplier;
-import com.modul.master.service.LocationService;
+import com.modul.master.repository.LocationDao;
 import com.modul.master.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +24,15 @@ public class SupplierController {
     SupplierService supplierService;
 
     @Autowired
-    LocationService locationService;
+    LocationDao locationDao;
 
-    public void setLocationService(LocationService locationService) {
-        this.locationService = locationService;
-    }
 
     //get all suppliers
     @RequestMapping("/suppliers")
     public String viewUser(Model model){
         List<MstSupplier> list = supplierService.getSuppliers();
         model.addAttribute("supplier",list);
-        return "supplier/suppliersIndex";
+        return "supplier/suppliers";
     }
 
     //detail supplier
@@ -42,31 +42,87 @@ public class SupplierController {
         return "supplier/detail";
     }
 
+    //add suplier
+    @RequestMapping("/supplierForm")
+    public String showForm(Model m){
+        List<MstProvince> allProvince = locationDao.getAllProvince();
+        Map<Integer, String> province = new HashMap<>();
+        for(MstProvince curProvince : allProvince){
+            province.put(curProvince.getId(), curProvince.getName());
+        }
+        List<MstRegion> allRegion = locationDao.getAllRegion();
+        Map<Integer, String> region = new HashMap<>();
+        for(MstRegion curegion : allRegion){
+            region.put(curegion.getId(), curegion.getName());
+        }
+        List<MstDistrict> allDistrict = locationDao.getAllDistrict();
+        Map<Integer, String> district = new HashMap<>();
+        for(MstDistrict curdistrict : allDistrict){
+            district.put(curdistrict.getId(), curdistrict.getName());
+        }
+        m.addAttribute("supplier", new MstSupplier());
+        m.addAttribute("province", province);
+        m.addAttribute("region", region);
+        m.addAttribute("district", district);
+        return "supplier/supplierForm";
+    }
 
-//    @Autowired
-//    LocationService locationService;
+    //add supplier
+    @RequestMapping(value="/save", method = RequestMethod.POST)
+    public String save(@ModelAttribute("supplier") MstSupplier supplier,  Model model){
+//        if (result.hasErrors()) {
+//            model.addAttribute("user", user);
+//            return "userForm";
+//        }
+        supplierService.save(supplier);
+        return "redirect:/suppliers";//will redirect to viewemp request mapping
+    }
+
+    //edit supplier
+    @RequestMapping("/supplierForm/{id}")
+    public String showFormEdit(Model m, @PathVariable int id){
+        List<MstProvince> allProvince = locationDao.getAllProvince();
+        Map<Integer, String> province = new HashMap<>();
+        for(MstProvince curProvince : allProvince){
+            province.put(curProvince.getId(), curProvince.getName());
+        }
+        List<MstRegion> allRegion = locationDao.getAllRegion();
+        Map<Integer, String> region = new HashMap<>();
+        for(MstRegion curegion : allRegion){
+            region.put(curegion.getId(), curegion.getName());
+        }
+        List<MstDistrict> allDistrict = locationDao.getAllDistrict();
+        Map<Integer, String> district = new HashMap<>();
+        for(MstDistrict curdistrict : allDistrict){
+            district.put(curdistrict.getId(), curdistrict.getName());
+        }
+        m.addAttribute("supplier", supplierService.getSupplier(id));
+        m.addAttribute("province", province);
+        m.addAttribute("region", region);
+        m.addAttribute("district", district);
+        return "supplier/supplierEditForm";
+    }
+
+    //add supplier
+    @RequestMapping(value="/edit", method = RequestMethod.POST)
+    public String edit(@ModelAttribute("supplier") MstSupplier supplier,  Model model){
+//        if (result.hasErrors()) {
+//            model.addAttribute("user", user);
+//            return "userForm";
+//        }
+        supplierService.update(supplier);
+        return "redirect:/suppliers";//will redirect to viewemp request mapping
+    }
+
+
+
 
 //    @Autowired
 //    UserValidator userValidator;
-
 //    @InitBinder
 //    protected void initBinder(WebDataBinder binder) {
 //        binder.addValidators(userValidator);
 //    }
-
-//    @RequestMapping("/supplierForm")
-//    public String showForm(Model m){
-//        List<MstProvince> allRole = locationService.getAllProvince();
-//        Map<Integer, String> province = new HashMap<>();
-//        for(MstProvince curRole : allRole){
-//            province.put(curRole.getId(), curRole.getName());
-//        }
-//        m.addAttribute("province", province);
-//        m.addAttribute("supplier", new MstSupplier());
-//        return "supplier/supplierForm";
-//    }
-
-
 
 
 //    /*It saves object into database. The @ModelAttribute puts request data

@@ -8,23 +8,27 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional(readOnly = true)
 @Service
-@Transactional
 public class SupplierServiceImpl implements SupplierService {
+
     @Autowired
     SupplierDao supplierDao;
 
     @Override
+    @Transactional(readOnly = false)
     public void save(MstSupplier supplier) {
         supplierDao.save(supplier);
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void update(MstSupplier supplier) {
         supplierDao.update(supplier);
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void delete(MstSupplier supplier) {
         supplierDao.delete(supplier);
     }

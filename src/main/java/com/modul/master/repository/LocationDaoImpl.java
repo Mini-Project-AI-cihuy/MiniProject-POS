@@ -6,17 +6,16 @@ import com.modul.master.model.MstRegion;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
+@Transactional(readOnly = true)
+@Repository
 public class LocationDaoImpl implements LocationDao{
 
     @Autowired
     SessionFactory sessionFactory;
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
 
     @Override
     public MstProvince getProvinceById(int province_id) {
