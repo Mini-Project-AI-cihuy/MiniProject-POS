@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Detail User Page</title>
-    <link type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet"/>
+<%--    <link type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet"/>--%>
 </head>
 <body>
 
@@ -19,13 +19,14 @@
             <th width="120">Address</th>
             <th width="120">Phone</th>
             <th width="120">Email</th>
-
+            <th width="120">Region</th>
         </tr>
             <tr>
                 <td>${supplier.name}</td>
                 <td>${supplier.address}</td>
                 <td>${supplier.phone}</td>
                 <td>${supplier.email}</td>
+                <td>${supplier.mstRegion.name}</td>
             </tr>
     </table>
     </div>

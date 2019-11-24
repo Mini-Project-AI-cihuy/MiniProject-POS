@@ -41,6 +41,7 @@ public class SupplierDaoImpl implements SupplierDao {
     public MstSupplier getSupplier(int id) {
         Session session = sessionFactory.getCurrentSession();
         return (MstSupplier) session.get(MstSupplier.class, id);
+
     }
 
     @Override

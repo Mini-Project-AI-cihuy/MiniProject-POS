@@ -26,7 +26,7 @@ public class MstDistrict {
     private int active;
 
 
-    @ManyToOne(targetEntity = MstRegion.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = MstRegion.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstRegion mstRegion;
 
