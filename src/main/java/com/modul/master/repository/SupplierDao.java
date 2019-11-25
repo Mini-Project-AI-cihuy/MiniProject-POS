@@ -12,4 +12,6 @@ public interface SupplierDao {
     public void delete(MstSupplier supplier);
     public MstSupplier getSupplier(int id);
     public List<MstSupplier> getSuppliers();
+    public List<MstSupplier> searchSuppliers(String param);
+
 }

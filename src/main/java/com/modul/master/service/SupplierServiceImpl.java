@@ -42,4 +42,9 @@ public class SupplierServiceImpl implements SupplierService {
     public List<MstSupplier> getSuppliers() {
         return supplierDao.getSuppliers();
     }
+
+    @Override
+    public List<MstSupplier> searchSuppliers(String search) {
+        return supplierDao.searchSuppliers(search);
+    }
 }

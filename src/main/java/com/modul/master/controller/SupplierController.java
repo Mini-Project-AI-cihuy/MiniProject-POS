@@ -1,9 +1,6 @@
 package com.modul.master.controller;
 
-import com.modul.master.model.MstDistrict;
-import com.modul.master.model.MstProvince;
-import com.modul.master.model.MstRegion;
-import com.modul.master.model.MstSupplier;
+import com.modul.master.model.*;
 import com.modul.master.repository.LocationDao;
 import com.modul.master.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +49,43 @@ public class SupplierController {
         model.addAttribute("province", province);
         model.addAttribute("region", region);
         model.addAttribute("district", district);
+        model.addAttribute("search", new Search());
         return "supplier/suppliers";
     }
+
+    //index supplier
+    @RequestMapping(value = "/search", method = RequestMethod.POST)
+    public String searchSupplier(@ModelAttribute Search search,Model model) {
+        //data for table
+        List<MstSupplier> list = supplierService.searchSuppliers(search.getAny());
+        model.addAttribute("suppliers", list);
+        //data for pop up table
+        List<MstProvince> allProvince = locationDao.getAllProvince();
+        Map<Integer, String> province = new HashMap<>();
+        for (MstProvince curProvince : allProvince) {
+            province.put(curProvince.getId(), curProvince.getName());
+        }
+        List<MstRegion> allRegion = locationDao.getAllRegion();
+        Map<Integer, String> region = new HashMap<>();
+        for (MstRegion curegion : allRegion) {
+            region.put(curegion.getId(), curegion.getName());
+        }
+        List<MstDistrict> allDistrict = locationDao.getAllDistrict();
+        Map<Integer, String> district = new HashMap<>();
+        for (MstDistrict curdistrict : allDistrict) {
+            district.put(curdistrict.getId(), curdistrict.getName());
+        }
+        model.addAttribute("supplier", new MstSupplier());
+        model.addAttribute("supplierEdit", supplierService.getSupplier(1));
+        model.addAttribute("province", province);
+        model.addAttribute("region", region);
+        model.addAttribute("district", district);
+        model.addAttribute("search", new Search());
+        return "supplier/suppliers";
+    }
+
+
+
 
     //detail supplier
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)

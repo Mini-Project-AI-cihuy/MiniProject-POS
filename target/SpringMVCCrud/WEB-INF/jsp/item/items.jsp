@@ -8,8 +8,6 @@
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-grid.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-reboot.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/css/homepage.css' />" rel="stylesheet"/>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/resources/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/resources/bootstrap/js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -138,7 +136,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <jsp:include page="supplierForm.jsp"/>
+                <jsp:include page="itemForm.jsp"/>
             </div>
 
             <!-- Modal footer -->
@@ -163,7 +161,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <jsp:include page="supplierEditForm.jsp"/>
+                <jsp:include page="itemEditForm.jsp"/>
             </div>
 
             <!-- Modal footer -->

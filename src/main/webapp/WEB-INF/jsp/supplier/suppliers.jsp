@@ -8,6 +8,8 @@
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-grid.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-reboot.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/css/homepage.css' />" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="/resources/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="/resources/bootstrap/js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -80,10 +82,10 @@
         <div class="col">
             <div class="container text-center">
                 <div class="container form-group text-left" style="margin-bottom: 10px">
-                    <form method="post" action="/search" class="form-horizontal float-left">
-                        <input type="text" style="width: 300px" id="param"/>
-                        <button type="button" class="btn btn-primary" ONCLICK="href='/search'">Search</button>
-                    </form>
+                    <form:form method="post" action="/search" class="form-horizontal float-left" commandName="search">
+                        <form:input type="text" style="width: 300px" id="any" path="any"/>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form:form>
                     <button type="button" class="btn btn-danger float-right" data-toggle="modal"
                             data-target="#ModalAdd">
                         Create

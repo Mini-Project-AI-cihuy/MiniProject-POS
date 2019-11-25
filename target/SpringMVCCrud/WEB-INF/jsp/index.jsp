@@ -138,7 +138,7 @@
 
 <%--            <!-- Modal body -->--%>
 <%--            <div class="modal-body">--%>
-<%--                <jsp:include page="supplierForm.jsp"/>--%>
+<%--                <jsp:include page="itemForm.jsp"/>--%>
 <%--            </div>--%>
 
 <%--            <!-- Modal footer -->--%>
@@ -163,7 +163,7 @@
 
 <%--            <!-- Modal body -->--%>
 <%--            <div class="modal-body">--%>
-<%--                <jsp:include page="supplierEditForm.jsp"/>--%>
+<%--                <jsp:include page="itemEditForm.jsp"/>--%>
 <%--            </div>--%>
 
 <%--            <!-- Modal footer -->--%>
