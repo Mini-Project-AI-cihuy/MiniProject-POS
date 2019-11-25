@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Edit User Page</title>
-    <link type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet"/>
+    <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet"/>
 </head>
 <body>
 <h1>Edit User</h1>

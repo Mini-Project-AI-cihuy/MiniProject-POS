@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <head>
     <title>User Page</title>
-    <link type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet"/>
+    <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet"/>
 </head>
 
 <h1>Users List</h1>

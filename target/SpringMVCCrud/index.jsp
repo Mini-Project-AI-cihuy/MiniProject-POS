@@ -3,14 +3,14 @@
 <html>
 <head>
     <title>Welcome Page</title>
-    <link type="text/css" href="<c:url value='/resources/css/bootstrap.min.css' />" rel="stylesheet"/>
+    <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet"/>
 </head>
 <body>
 <div class="container">
     <h1>Welcome User!</h1>
     <br>
     <button type="button" class="button" ONCLICK="location.href='/userForm'">Add</button>
-    <button type="button" class="button" ONCLICK="location.href='/user'">View</button>
+    <button type="button" class="button" ONCLICK="location.href='/listCategory'">View</button>
 </div>
 </body>
 </html>

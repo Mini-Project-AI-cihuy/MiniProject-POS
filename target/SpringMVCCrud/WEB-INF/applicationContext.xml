@@ -8,14 +8,14 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 
-    <context:component-scan base-package="com.experiment.springmvc"></context:component-scan>
+    <context:component-scan base-package="com.modul.master"></context:component-scan>
     <tx:annotation-driven/>
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:messages"/>
         <!--        <property name="fallbackToSystemLocale" value="false"/>-->
     </bean>
-    <bean id="userValidator" class="com.experiment.springmvc.validator.UserValidator" />
+    <bean id="userValidator" class="com.modul.master.validator.UserValidator" />
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
@@ -34,7 +34,7 @@
         <property name="dataSource" ref="datasource"></property>
         <property name="annotatedClasses">
             <list>
-                <value>com.experiment.springmvc.model.User</value>
+                <value>com.modul.master.model.MstCategory</value>
             </list>
         </property>
 
@@ -50,6 +50,10 @@
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="roleDao" class="com.modul.master.repository.RoleDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
