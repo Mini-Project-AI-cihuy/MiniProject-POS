@@ -13,12 +13,13 @@
     <script src="<c:url value='/resources/bootstrap/js/bootstrap.js'/>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $("#myInput").on("keyup", function() {
+        $(document).ready(function () {
+            $("#any").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
+                $("#category-table tr").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
@@ -43,32 +44,32 @@
 
     <ul class="nav flex-column bg-dark mb-0">
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic bg-secondary">
-                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+            <a href="/index" class="nav-link text-white font-italic">
+                <i class="fa fa-id-card-o mr-3 text-primary fa-fw"></i>
                 Employee
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
-                <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+        <li class="/listCategory">
+            <a href="#" class="nav-link text-white font-italic bg-secondary">
+                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                 Category
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
-                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+            <a href="/suppliers" class="nav-link text-white font-italic">
+                <i class="fa fa-truck mr-3 text-primary fa-fw"></i>
                 Supplier
             </a>
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link text-white font-italic">
-                <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                <i class="fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
                 Outlet
             </a>
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link text-white font-italic">
-                <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 Item
             </a>
         </li>
@@ -87,13 +88,11 @@
     <div class="row text-white">
         <div class="col">
             <div class="container text-center">
+
                 <div class="container form-group text-left" style="margin-bottom: 10px">
-<%--                    <form method="post" action="/search" class="form-horizontal float-left">--%>
-<%--                        <input type="text" style="width: 300px" id="param"/>--%>
-<%--                        <button type="button" class="btn btn-primary" ONCLICK="href='/search'">Search</button>--%>
-<%--                    </form>--%>
-                    <input id="myInput" type="text" placeholder="Search..">
-                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalCreateCategory">
+                    <input type="text" style="width: 300px" id="any" placeholder="Search..."/>
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                            data-target="#modalCreateCategory">
                         Create
                     </button>
                 </div>
@@ -103,22 +102,26 @@
                     <table class="table table-bordered text-dark">
                         <thead>
                         <tr>
-                            <th width="120">Category Name</th>
+                            <th width="180">Category Name</th>
                             <th width="120">Item Stocks</th>
                             <th width="60">#</th>
                         </tr>
                         </thead>
+                        <tbody id="category-table">
                         <c:forEach items="${listCategory}" var="category">
                             <tr>
                                 <td>${category.name}</td>
                                 <td>10</td>
                                 <td>
-<%--                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalEditCategory">View</button>--%>
-                                    <button type="button" class="btn btn-link" ONCLICK="location.href='/editCategory/${category.id}'">View</button>
-<%--                                    <a href="/editCategory/${category.id}">View</a>--%>
+                                        <%--                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#modalEditCategory">View</button>--%>
+                                    <button type="button" class="btn btn-link"
+                                            ONCLICK="location.href='/editCategory/${category.id}'">View
+                                    </button>
+                                        <%--                                    <a href="/editCategory/${category.id}">View</a>--%>
                                 </td>
                             </tr>
                         </c:forEach>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -136,12 +139,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <jsp:include page="formCategory.jsp" />
+                <jsp:include page="formCategory.jsp"/>
             </div>
-<%--            <div class="modal-footer">--%>
-<%--                <button type="button" class="btn btn-primary">Save changes</button>--%>
-<%--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
-<%--            </div>--%>
+            <%--            <div class="modal-footer">--%>
+            <%--                <button type="button" class="btn btn-primary">Save changes</button>--%>
+            <%--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
+            <%--            </div>--%>
         </div>
     </div>
 </div>
@@ -156,7 +159,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <jsp:include page="editCategory.jsp" />
+                <jsp:include page="editCategory.jsp"/>
             </div>
             <%--            <div class="modal-footer">--%>
             <%--                <button type="button" class="btn btn-primary">Save changes</button>--%>

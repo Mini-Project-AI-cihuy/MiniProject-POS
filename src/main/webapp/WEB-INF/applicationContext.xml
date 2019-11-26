@@ -15,7 +15,7 @@
         <property name="basename" value="classpath:messages"/>
         <!--        <property name="fallbackToSystemLocale" value="false"/>-->
     </bean>
-    <bean id="userValidator" class="com.modul.master.validator.UserValidator" />
+<!--    <bean id="userValidator" class="com.modul.master.validator.UserValidator" />-->
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">

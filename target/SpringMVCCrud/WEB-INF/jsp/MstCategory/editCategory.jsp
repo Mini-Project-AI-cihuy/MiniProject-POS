@@ -4,12 +4,12 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>List Category</title>
+    <title>Edit Category</title>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-grid.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-reboot.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/css/homepage.css' />" rel="stylesheet"/>
-    <link href="<c:url value='/resources/fontawesome/css/all.css'/>" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="<c:url value='/resources/bootstrap/js/bootstrap.bundle.js'/>"></script>
     <script src="<c:url value='/resources/bootstrap/js/bootstrap.js'/>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -34,19 +34,19 @@
 
     <ul class="nav flex-column bg-dark mb-0">
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic bg-secondary">
+            <a href="/index" class="nav-link text-white font-italic">
                 <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                 Employee
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/listCategory" class="nav-link text-white font-italic bg-secondary">
                 <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
                 Category
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/suppliers" class="nav-link text-white font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 Supplier
             </a>
@@ -73,24 +73,27 @@
     <%--    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>--%>
 
     <!-- Demo content -->
-    <h2 class="display-4 text-dark">Category</h2>
+    <div class="row display-4">
+        <i class="fa fa-arrow-left" style="color:black;margin: 10px" onclick="history.back()"></i>
+        <h2 class="display-4 text-dark">Edit Category</h2>
+    </div>
     <div class="separator bg-dark"></div>
     <div class="row text-white">
         <div class="col">
-            <div class="container text-center">
+            <div class="container text-left col-md-8">
                 <br/>
                 <form:form method="post" action="/saveCategory" commandName="category" class="form-horizontal">
                     <form:hidden path="id"/>
                     <div class="form-group">
                             <%--        <label class="control-label col-md-3">Category Name</label>--%>
-                        <div class="col-md-7">
-                            <form:input type="text" class="form-control" path="name"/>
-                            <form:errors path="name" cssStyle="color:#FF000" />
-                        </div>
+                        <form:input type="text" class="form-control" path="name"/>
+                        <form:errors path="name" cssStyle="color:#FF000"/>
                     </div>
-                    <button type="button" class="btn btn-danger float-left" ONCLICK="location.href='/deactivateCategory/${category.id}'"><i class="fas fa-times"></i></button>
-                    <button type="reset" class="btn btn-primary float-left">Cancel</button>
                     <input type="submit" class="btn btn-primary float-right" value="Save"/>
+
+                    <input type="reset" class="btn btn-primary float-right" style="margin-right: 10px" value="Cancel">
+                    <button type="button" class="btn btn-danger fa fa-times float-left"
+                            ONCLICK="location.href='/deactivateCategory/${category.id}'"/>
                 </form:form>
             </div>
         </div>
