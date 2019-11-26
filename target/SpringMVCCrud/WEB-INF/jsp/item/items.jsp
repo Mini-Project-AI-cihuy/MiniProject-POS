@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
 <head>
-    <title>Supplier</title>
+    <title>Item</title>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-grid.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-reboot.css' />" rel="stylesheet"/>
@@ -40,26 +40,26 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/listCategory" class="nav-link text-white font-italic">
                 <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                 Category
             </a>
         </li>
         <li class="nav-item">
-            <a href="/suppliers" class="nav-link text-white font-italic bg-secondary">
+            <a href="/suppliers" class="nav-link text-white font-italic">
                 <i class="fa fa-truck mr-3 text-primary fa-fw"></i>
                 Supplier
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/outlets" class="nav-link text-white font-italic">
                 <i class="fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
                 Outlet
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
-                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+            <a href="/items" class="nav-link text-white font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw bg-secondary"></i>
                 Item
             </a>
         </li>
@@ -74,16 +74,13 @@
     <%--    <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"><i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bold">Toggle</small></button>--%>
 
     <!-- Demo content -->
-    <h2 class="display-4 text-dark">Supplier</h2>
+    <h2 class="display-4 text-dark">Items</h2>
     <div class="separator bg-dark"></div>
     <div class="row text-white">
         <div class="col">
             <div class="container text-center">
                 <div class="container form-group text-left" style="margin-bottom: 10px">
-                    <form:form method="post" action="/search" class="form-horizontal float-left" commandName="search">
-                        <form:input type="text" style="width: 300px" id="any" path="any"/>
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form:form>
+
                     <button type="button" class="btn btn-danger float-right" data-toggle="modal"
                             data-target="#ModalAdd">
                         Create
@@ -96,23 +93,22 @@
                     <table class="table table-bordered text-dark">
                         <tr>
                             <th width="80">Name</th>
-                            <th width="120">Address</th>
-                            <th width="120">Phone</th>
-                            <th width="120">Email</th>
-                            <th width="120">Province</th>
+                            <th width="120">Category</th>
+                            <th width="120">Unit Price</th>
+                            <th width="120">In Stock</th>
+                            <th width="120">Stock Alert</th>
                             <th width="60">#</th>
                         </tr>
-                        <c:forEach items="${suppliers}" var="supplier">
+                        <c:forEach items="${items}" var="item">
                             <tr>
-                                <td>${supplier.name}</td>
-                                <td>${supplier.address}</td>
-                                <td>${supplier.phone}</td>
-                                <td>${supplier.email}</td>
-                                <td>${supplier.mstProvinces.name}</td>
+                                <td>${item.name}</td>
+                                <td>${item.mstCategory.name}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
-                                    <a href="/supplierFormEdit/${supplier.id}">Edit</a>
+                                    <a href="/supplierFormEdit/${item.id}">Edit</a>
 <%--                                    <a data-toggle="modal" href="#ModalEdit">Edit</a>--%>
-                                    <a href="/deleteSupplier/${supplier.id}">Delete</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -136,32 +132,7 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                <jsp:include page="itemForm.jsp"/>
-            </div>
-
-            <!-- Modal footer -->
-            <%--            <div class="modal-footer">--%>
-            <%--                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--%>
-            <%--            </div>--%>
-
-        </div>
-    </div>
-</div>
-
-<!-- Modal edit -->
-<div class="modal" id="ModalEdit">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Edit New Suppliers</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <jsp:include page="itemEditForm.jsp"/>
+<%--                <jsp:include page="itemForm.jsp"/>--%>
             </div>
 
             <!-- Modal footer -->

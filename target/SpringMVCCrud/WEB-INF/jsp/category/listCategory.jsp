@@ -49,9 +49,9 @@
                 Employee
             </a>
         </li>
-        <li class="/listCategory">
-            <a href="#" class="nav-link text-white font-italic bg-secondary">
-                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+        <li class="nav-item">
+            <a href="/listCategory" class="nav-link text-white font-italic">
+                <i class="fa fa-th-large mr-3 text-primary fa-fw bg-secondary"></i>
                 Category
             </a>
         </li>
@@ -62,13 +62,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/outlets" class="nav-link text-white font-italic">
                 <i class="fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
                 Outlet
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/items" class="nav-link text-white font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 Item
             </a>
@@ -91,7 +91,7 @@
 
                 <div class="container form-group text-left" style="margin-bottom: 10px">
                     <input type="text" style="width: 300px" id="any" placeholder="Search..."/>
-                    <button type="button" class="btn btn-danger float-right" data-toggle="modal"
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal"
                             data-target="#modalCreateCategory">
                         Create
                     </button>

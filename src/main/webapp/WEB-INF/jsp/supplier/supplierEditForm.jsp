@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link text-white font-italic">
+                <a href="/listCategory" class="nav-link text-white font-italic">
                     <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                     Category
                 </a>
@@ -55,13 +55,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link text-white font-italic">
+                <a href="/outlets" class="nav-link text-white font-italic">
                     <i class="fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
                     Outlet
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link text-white font-italic">
+                <a href="/items" class="nav-link text-white font-italic">
                     <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                     Item
                 </a>

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class MstItemDaoImpl implements MstItemDao{
+public class ItemDaoImpl implements ItemDao{
 
     @Autowired
     SessionFactory sessionFactory;
@@ -41,7 +41,7 @@ public class MstItemDaoImpl implements MstItemDao{
     public List<MstItem> getAllItems() {
         Session session = sessionFactory.getCurrentSession();
         Criteria crit = session.createCriteria(MstItem.class);
-        crit.add(Restrictions.eq("active",0));
+        crit.add(Restrictions.eq("active", 0));
         return crit.list();
     }
 }

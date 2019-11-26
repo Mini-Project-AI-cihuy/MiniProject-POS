@@ -38,6 +38,8 @@
                 <value>com.modul.master.model.MstRegion</value>
                 <value>com.modul.master.model.MstDistrict</value>
                 <value>com.modul.master.model.MstSupplier</value>
+                <value>com.modul.master.model.MstCategory</value>
+                <value>com.modul.master.model.MstItem</value>
             </list>
         </property>
 

@@ -1,11 +1,11 @@
-package com.modul.master.repository;
+package com.modul.master.service;
 
 import com.modul.master.model.MstCategory;
 import com.modul.master.model.MstItem;
 
 import java.util.List;
 
-public interface ItemDao {
+public interface ItemService {
 
     public void save(MstItem mstItem);
     public void update(MstItem mstItem);

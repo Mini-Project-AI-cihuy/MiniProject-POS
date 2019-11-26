@@ -47,7 +47,9 @@ public class SupplierDaoImpl implements SupplierDao {
     @Override
     public List<MstSupplier> getSuppliers() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createCriteria(MstSupplier.class).list();
+        Criteria crit = session.createCriteria(MstSupplier.class);
+        crit.add(Restrictions.eq("active", 0));
+        return crit.list();
     }
 
     @Override

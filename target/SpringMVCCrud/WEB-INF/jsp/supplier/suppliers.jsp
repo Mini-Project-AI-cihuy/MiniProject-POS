@@ -15,6 +15,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#any").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#supplier-table tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -42,7 +52,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/listCategory" class="nav-link text-white font-italic">
                 <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
                 Category
             </a>
@@ -54,13 +64,13 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/outlets" class="nav-link text-white font-italic">
                 <i class="fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
                 Outlet
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link text-white font-italic">
+            <a href="/items" class="nav-link text-white font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
                 Item
             </a>
@@ -82,10 +92,11 @@
         <div class="col">
             <div class="container text-center">
                 <div class="container form-group text-left" style="margin-bottom: 10px">
-                    <form:form method="post" action="/search" class="form-horizontal float-left" commandName="search">
-                        <form:input type="text" style="width: 300px" id="any" path="any"/>
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form:form>
+                    <%--                    <form:form method="post" action="/search" class="form-horizontal float-left" commandName="search">--%>
+                    <%--                        <form:input type="text" style="width: 300px" id="any" path="any"/>--%>
+                    <%--                        <button type="submit" class="btn btn-primary">Search</button>--%>
+                    <%--                    </form:form>--%>
+                    <input type="text" style="width: 300px" id="any" placeholder="Search..."/>
                     <button type="button" class="btn btn-danger float-right" data-toggle="modal"
                             data-target="#ModalAdd">
                         Create
@@ -96,6 +107,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered text-dark">
+                        <thead>
                         <tr>
                             <th width="80">Name</th>
                             <th width="120">Address</th>
@@ -104,6 +116,8 @@
                             <th width="120">Province</th>
                             <th width="60">#</th>
                         </tr>
+                        </thead>
+                        <tbody id="supplier-table">
                         <c:forEach items="${suppliers}" var="supplier">
                             <tr>
                                 <td>${supplier.name}</td>
@@ -113,11 +127,12 @@
                                 <td>${supplier.mstProvinces.name}</td>
                                 <td>
                                     <a href="/supplierFormEdit/${supplier.id}">Edit</a>
-<%--                                    <a data-toggle="modal" href="#ModalEdit">Edit</a>--%>
-                                    <a href="/deleteSupplier/${supplier.id}">Delete</a>
+                                        <%--                                    <a data-toggle="modal" href="#ModalEdit">Edit</a>--%>
+                                    <a href="/deactivatedSupplier/${supplier.id}">Deactivated</a>
                                 </td>
                             </tr>
                         </c:forEach>
+                        </tbody>
                     </table>
                 </div>
             </div>

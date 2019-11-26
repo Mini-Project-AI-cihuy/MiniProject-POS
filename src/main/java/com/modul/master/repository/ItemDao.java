@@ -5,7 +5,7 @@ import com.modul.master.model.MstItem;
 
 import java.util.List;
 
-public interface MstItemDao {
+public interface ItemDao {
 
     public void save(MstItem mstItem);
     public void update(MstItem mstItem);

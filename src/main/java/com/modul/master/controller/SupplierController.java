@@ -84,9 +84,6 @@ public class SupplierController {
         return "supplier/suppliers";
     }
 
-
-
-
     //detail supplier
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     public String getSupplier(ModelMap model, @PathVariable int id) {
@@ -148,10 +145,11 @@ public class SupplierController {
     }
 
     //delete
-    @RequestMapping(value = "/deleteSupplier/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deactivatedSupplier/{id}", method = RequestMethod.GET)
     public String delete(@PathVariable int id) {
         MstSupplier supplier = supplierService.getSupplier(id);
-        supplierService.delete(supplier);
+        supplier.setActive(1);
+        supplierService.update(supplier);
         return "redirect:/suppliers";
     }
 

@@ -4,24 +4,30 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="pos_mst_category")
-public class MstCategory {
+@Table(name="pos_mst_item")
+public class MstItem {
 
     @Id
     @Column(name="id")
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name="created_by")
+    @Column(name="CATEGORY_ID")
+    private int categoryId;
+    @Column(name="created_by", nullable = true)
     private int createdBy;
-    @Column(name="created_on")
+    @Column(name="created_on", nullable = true)
     private Date createdOn;
-    @Column(name="modified_by")
+    @Column(name="modified_by", nullable = true)
     private int modifiedBy;
-    @Column(name="modified_on")
+    @Column(name="modified_on", nullable = true)
     private Date modifiedOn;
     @Column(name="active")
     private int active;
+
+    @ManyToOne(targetEntity = MstCategory.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "id", insertable = false, updatable = false)
+    private MstCategory mstCategory;
 
     public int getId() {
         return id;
@@ -37,6 +43,14 @@ public class MstCategory {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getCreatedBy() {
@@ -71,7 +85,7 @@ public class MstCategory {
         this.modifiedOn = modifiedOn;
     }
 
-    public int isActive() {
+    public int getActive() {
         return active;
     }
 
@@ -79,16 +93,11 @@ public class MstCategory {
         this.active = active;
     }
 
-    @Override
-    public String toString() {
-        return "MstCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", createdBy=" + createdBy +
-                ", createdOn=" + createdOn +
-                ", modifiedBy=" + modifiedBy +
-                ", modifiedOn=" + modifiedOn +
-                ", active=" + active +
-                '}';
+    public MstCategory getMstCategory() {
+        return mstCategory;
+    }
+
+    public void setMstCategory(MstCategory mstCategory) {
+        this.mstCategory = mstCategory;
     }
 }
