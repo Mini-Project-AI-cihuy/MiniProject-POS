@@ -1,10 +1,13 @@
 package com.modul.master.repository;
 
-import com.modul.master.model.MstCategory;
 import com.modul.master.model.MstItem;
+import com.modul.master.model.MstItemInventory;
+import com.modul.master.model.MstItemVariant;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,30 +21,29 @@ public class ItemDaoImpl implements ItemDao{
     SessionFactory sessionFactory;
 
     @Override
-    public void save(MstItem mstItem) {
+    public void save(MstItemInventory mstItemInventory) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(mstItem);
+        session.save(mstItemInventory);
         session.flush();
     }
 
     @Override
-    public void update(MstItem mstItem) {
+    public void update(MstItemInventory mstItemInventory) {
         Session session = sessionFactory.getCurrentSession();
-        session.update(mstItem);
+        session.update(mstItemInventory);
         session.flush();
     }
 
     @Override
-    public MstItem getItemById(int id) {
+    public MstItemInventory getItemById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        return (MstItem) session.get(MstItem.class, id);
+        return (MstItemInventory) session.get(MstItemInventory.class, id);
     }
 
     @Override
-    public List<MstItem> getAllItems() {
+    public List<MstItemInventory> getAllItems() {
         Session session = sessionFactory.getCurrentSession();
-        Criteria crit = session.createCriteria(MstItem.class);
-        crit.add(Restrictions.eq("active", 0));
+        Criteria crit = session.createCriteria(MstItemInventory.class);
         return crit.list();
     }
 }

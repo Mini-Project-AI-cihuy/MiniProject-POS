@@ -19,14 +19,7 @@ public class SupplierDaoImpl implements SupplierDao {
     @Override
     public void save(MstSupplier supplier) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(supplier);
-        session.flush();
-    }
-
-    @Override
-    public void update(MstSupplier supplier) {
-        Session session = sessionFactory.getCurrentSession();
-        session.update(supplier);
+        session.saveOrUpdate(supplier);
         session.flush();
     }
 

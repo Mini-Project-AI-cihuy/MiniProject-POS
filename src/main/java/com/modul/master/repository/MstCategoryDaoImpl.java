@@ -19,7 +19,7 @@ public class MstCategoryDaoImpl implements MstCategoryDao{
     @Override
     public void save(MstCategory mstCategory) {
         Session session = sessionFactory.getCurrentSession();
-        session.save(mstCategory);
+        session.saveOrUpdate(mstCategory);
         session.flush();
     }
 

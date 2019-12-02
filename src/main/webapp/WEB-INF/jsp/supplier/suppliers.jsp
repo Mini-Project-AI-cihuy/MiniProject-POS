@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
+        //search
         $(document).ready(function () {
             $("#any").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
@@ -24,6 +25,40 @@
                 });
             });
         });
+
+        //edit
+        $(document).on('click', '.edit_data', function () {
+            var idSupllier = $(this).attr("id");
+            $.ajax({
+                url: "/supplierJson/" + idSupllier,
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $('#id').val(data.id);
+                    $('#name').val(data.name);
+                    $('#address').val(data.address);
+                    $('#province').val(data.provinceId);
+                    $('#region').val(data.regionId);
+                    $('#district').val(data.districtId);
+                    $('#postal_code').val(data.postalCode);
+                    $('#phone').val(data.phone);
+                    $('#email').val(data.email);
+                }
+            });
+        });
+
+        //add
+        $(document).on('click', '.add_data', function () {
+            $('#name').val("");
+            $('#address').val("");
+            $('#province').val(0);
+            $('#region').val(0);
+            $('#district').val(0);
+            $('#postal_code').val("");
+            $('#phone').val("");
+            $('#email').val("");
+        });
+
     </script>
 </head>
 
@@ -46,7 +81,7 @@
 
     <ul class="nav flex-column bg-dark mb-0">
         <li class="nav-item">
-            <a href="/index" class="nav-link text-white font-italic">
+            <a href="/listUser" class="nav-link text-white font-italic">
                 <i class="fa fa-id-card-o mr-3 text-primary fa-fw"></i>
                 Employee
             </a>
@@ -72,7 +107,7 @@
         <li class="nav-item">
             <a href="/items" class="nav-link text-white font-italic">
                 <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
-                Item
+                Items
             </a>
         </li>
     </ul>
@@ -97,7 +132,7 @@
                     <%--                        <button type="submit" class="btn btn-primary">Search</button>--%>
                     <%--                    </form:form>--%>
                     <input type="text" style="width: 300px" id="any" placeholder="Search..."/>
-                    <button type="button" class="btn btn-danger float-right" data-toggle="modal"
+                    <button id=null type="button" class="btn btn-primary float-right add_data" data-toggle="modal"
                             data-target="#ModalAdd">
                         Create
                     </button>
@@ -126,8 +161,9 @@
                                 <td>${supplier.email}</td>
                                 <td>${supplier.mstProvinces.name}</td>
                                 <td>
-                                    <a href="/supplierFormEdit/${supplier.id}">Edit</a>
-                                        <%--                                    <a data-toggle="modal" href="#ModalEdit">Edit</a>--%>
+                                        <%--                                    <a href="/supplierFormEdit/${supplier.id}">Edit</a>--%>
+                                    <a href="#" name="edit" data-toggle="modal" id="${supplier.id}" class="edit_data"
+                                       data-target="#ModalAdd">Edit</a>
                                     <a href="/deactivatedSupplier/${supplier.id}">Deactivated</a>
                                 </td>
                             </tr>
@@ -144,48 +180,19 @@
 <div class="modal" id="ModalAdd">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Add New Suppliers</h4>
+                <h4 class="modal-title">Supplier</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
             <!-- Modal body -->
             <div class="modal-body">
                 <jsp:include page="supplierForm.jsp"/>
             </div>
-
             <!-- Modal footer -->
             <%--            <div class="modal-footer">--%>
             <%--                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--%>
             <%--            </div>--%>
-
-        </div>
-    </div>
-</div>
-
-<!-- Modal edit -->
-<div class="modal" id="ModalEdit">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Edit New Suppliers</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-                <jsp:include page="supplierEditForm.jsp"/>
-            </div>
-
-            <!-- Modal footer -->
-            <%--            <div class="modal-footer">--%>
-            <%--                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--%>
-            <%--            </div>--%>
-
         </div>
     </div>
 </div>

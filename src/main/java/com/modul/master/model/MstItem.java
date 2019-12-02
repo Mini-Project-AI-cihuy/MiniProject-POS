@@ -1,6 +1,7 @@
 package com.modul.master.model;
 
 import javax.persistence.*;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Entity

@@ -2,21 +2,38 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
+<%@ taglib  uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<html>
 <head>
-    <title>Item</title>
+    <title>Items</title>
+<%--    <security:authorize access="isAuthenticated()">--%>
+<%--        authenticated as <security:authentication property="principal.username" />--%>
+<%--    </security:authorize>--%>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-grid.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-reboot.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/css/homepage.css' />" rel="stylesheet"/>
-    <script src="/resources/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="/resources/bootstrap/js/bootstrap.js"></script>
+    <script src="<c:url value='/resources/bootstrap/js/bootstrap.bundle.js'/>"></script>
+    <script src="<c:url value='/resources/bootstrap/js/bootstrap.js'/>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        //search
+        $(document).ready(function () {
+            $("#any").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#item-table tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        //add
+        //edit
+    </script>
 </head>
-
 <body>
-
 <div class="vertical-nav bg-dark" id="sidebar">
     <div class="py-4 px-3 mb-4 bg-dark">
         <div class="media d-flex align-items-center">
@@ -24,8 +41,13 @@
                  alt="..." width="65"
                  class="mr-3 rounded-circle img-thumbnail shadow-sm">
             <div class="media-body">
-                <h4 class="m-0 text-white">User Name</h4>
-                <p class="font-weight-light text-white mb-0">Role</p>
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <h4 class="m-0 text-white"><span>Hello, ${pageContext.request.userPrincipal.name}</span></h4>
+                    <h5 class="m-0 text-white"><sec:authentication property="principal.authorities"/></h5>
+                    <span><a id="logout" href="${pageContext.servletContext.contextPath}/logout">Logout</a></span>
+                </c:if>
+                <%--                <h4 class="m-0 text-white">User Name</h4>--%>
+                <%--                <p class="font-weight-light text-white mb-0">Role</p>--%>
             </div>
         </div>
     </div>
@@ -34,7 +56,7 @@
 
     <ul class="nav flex-column bg-dark mb-0">
         <li class="nav-item">
-            <a href="/index" class="nav-link text-white font-italic">
+            <a href="/listUser" class="nav-link text-white font-italic">
                 <i class="fa fa-id-card-o mr-3 text-primary fa-fw"></i>
                 Employee
             </a>
@@ -58,9 +80,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/items" class="nav-link text-white font-italic">
-                <i class="fa fa-cubes mr-3 text-primary fa-fw bg-secondary"></i>
-                Item
+            <a href="/items" class="nav-link text-white font-italic bg-secondary">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                Items
             </a>
         </li>
     </ul>
@@ -80,9 +102,8 @@
         <div class="col">
             <div class="container text-center">
                 <div class="container form-group text-left" style="margin-bottom: 10px">
-
-                    <button type="button" class="btn btn-danger float-right" data-toggle="modal"
-                            data-target="#ModalAdd">
+                    <input type="text" style="width: 300px" id="any" placeholder="Search..."/>
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalItems">
                         Create
                     </button>
                 </div>
@@ -99,16 +120,27 @@
                             <th width="120">Stock Alert</th>
                             <th width="60">#</th>
                         </tr>
-                        <c:forEach items="${items}" var="item">
+                        <tbody id="item-table"
+                        <c:forEach items="${items}" var="itemInventory">
                             <tr>
-                                <td>${item.name}</td>
-                                <td>${item.mstCategory.name}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                                <td>${itemInventory.mstItemVariant.mstItem.name} - ${itemInventory.mstItemVariant.name}</td>
+                                <td>${itemInventory.mstItemVariant.mstItem.mstCategory.name}</td>
+                                <td>Rp. ${itemInventory.mstItemVariant.price}</td>
+                                <td> ${itemInventory.endingQty}</td>
+                                <c:if test="${itemInventory.endingQty <= itemInventory.alertAtQty}">
+                                    <td>Low</td>
+                                </c:if>
+                                <c:if test="${itemInventory.endingQty > itemInventory.alertAtQty}">
+                                    <td>Normal</td>
+                                </c:if>
+
                                 <td>
-                                    <a href="/supplierFormEdit/${item.id}">Edit</a>
-<%--                                    <a data-toggle="modal" href="#ModalEdit">Edit</a>--%>
+                                        <%--                                    <a href="/supplierFormEdit/${item.id}">Edit</a>--%>
+<%--                                    <a href="#" name="edit" data-toggle="modal" id="${itemInventory.mstItemVariant.mstItem.id}" class="edit_data" --%>
+<%--                                       data-target="#ModalAdd">Edit</a>--%>
+                                    <button type="button" class="btn btn-link edit_data" id="${itemInventory.mstItemVariant.mstItem.id}" data-toggle="modal"
+                                            data-target="#modalItems">Edit</button>
+                                        <%--                                    <a data-toggle="modal" href="#ModalEdit">Edit</a>--%>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -120,28 +152,24 @@
 </div>
 
 <!-- Modal Add -->
-<div class="modal" id="ModalAdd">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="modalItems">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
         <div class="modal-content">
-
-            <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Add New Suppliers</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h5 class="modal-title">Items</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
-            <!-- Modal body -->
             <div class="modal-body">
-<%--                <jsp:include page="itemForm.jsp"/>--%>
+                <jsp:include page="itemForm.jsp"/>
             </div>
-
-            <!-- Modal footer -->
             <%--            <div class="modal-footer">--%>
-            <%--                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--%>
+            <%--                <button type="button" class="btn btn-primary">Save changes</button>--%>
+            <%--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--%>
             <%--            </div>--%>
-
         </div>
     </div>
 </div>
-
 </body>
+</html>

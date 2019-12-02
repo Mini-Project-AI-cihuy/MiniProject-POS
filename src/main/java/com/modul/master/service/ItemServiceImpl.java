@@ -1,14 +1,9 @@
 package com.modul.master.service;
 
 import com.modul.master.model.MstItem;
+import com.modul.master.model.MstItemInventory;
 import com.modul.master.repository.ItemDao;
-import com.modul.master.service.ItemService;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,23 +18,25 @@ public class ItemServiceImpl implements ItemService {
 
     @Transactional(readOnly = false)
     @Override
-    public void save(MstItem mstItem) {
-        itemDao.save(mstItem);
+    public void save(MstItemInventory mstItemInventory) {
+        itemDao.save(mstItemInventory);
     }
 
     @Transactional(readOnly = false)
     @Override
-    public void update(MstItem mstItem) {
-        itemDao.update(mstItem);
+    public void update(MstItemInventory mstItemInventory) {
+        itemDao.update(mstItemInventory);
     }
 
     @Override
-    public MstItem getItemById(int id) {
+    public MstItemInventory getItemById(int id) {
         return itemDao.getItemById(id);
     }
 
     @Override
-    public List<MstItem> getAllItems() {
+    public List<MstItemInventory> getAllItems() {
+        List<MstItemInventory> item = itemDao.getAllItems();
+
         return itemDao.getAllItems();
     }
 }

@@ -9,26 +9,23 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
+@Transactional(readOnly=true)
 public class MstCategoryServiceImpl implements MstCategoryService{
 
     @Autowired
     MstCategoryDao mstCategoryDao;
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly=false)
     public void save(MstCategory mstCategory){
         mstCategoryDao.save(mstCategory);
     }
-
-    @Transactional(readOnly = false)
+    @Transactional(readOnly=false)
     public void update(MstCategory mstCategory){
         mstCategoryDao.update(mstCategory);
     }
-
     public MstCategory getCategoryById(int id){
         return mstCategoryDao.getCategoryById(id);
     }
-
     public List<MstCategory> getAllCategories(){
         return mstCategoryDao.getAllCategories();
     }

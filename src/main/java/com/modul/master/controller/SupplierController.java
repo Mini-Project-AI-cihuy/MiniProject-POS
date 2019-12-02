@@ -28,7 +28,7 @@ public class SupplierController {
         //data for table
         List<MstSupplier> list = supplierService.getSuppliers();
         model.addAttribute("suppliers", list);
-        //data for pop up table
+        //data for DROPDOWN on pop up
         List<MstProvince> allProvince = locationDao.getAllProvince();
         Map<Integer, String> province = new HashMap<>();
         for (MstProvince curProvince : allProvince) {
@@ -44,56 +44,16 @@ public class SupplierController {
         for (MstDistrict curdistrict : allDistrict) {
             district.put(curdistrict.getId(), curdistrict.getName());
         }
+        //end
         model.addAttribute("supplier", new MstSupplier());
-        model.addAttribute("supplierEdit", supplierService.getSupplier(1));
         model.addAttribute("province", province);
         model.addAttribute("region", region);
         model.addAttribute("district", district);
-        model.addAttribute("search", new Search());
         return "supplier/suppliers";
-    }
-
-    //index supplier
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String searchSupplier(@ModelAttribute Search search,Model model) {
-        //data for table
-        List<MstSupplier> list = supplierService.searchSuppliers(search.getAny());
-        model.addAttribute("suppliers", list);
-        //data for pop up table
-        List<MstProvince> allProvince = locationDao.getAllProvince();
-        Map<Integer, String> province = new HashMap<>();
-        for (MstProvince curProvince : allProvince) {
-            province.put(curProvince.getId(), curProvince.getName());
-        }
-        List<MstRegion> allRegion = locationDao.getAllRegion();
-        Map<Integer, String> region = new HashMap<>();
-        for (MstRegion curegion : allRegion) {
-            region.put(curegion.getId(), curegion.getName());
-        }
-        List<MstDistrict> allDistrict = locationDao.getAllDistrict();
-        Map<Integer, String> district = new HashMap<>();
-        for (MstDistrict curdistrict : allDistrict) {
-            district.put(curdistrict.getId(), curdistrict.getName());
-        }
-        model.addAttribute("supplier", new MstSupplier());
-        model.addAttribute("supplierEdit", supplierService.getSupplier(1));
-        model.addAttribute("province", province);
-        model.addAttribute("region", region);
-        model.addAttribute("district", district);
-        model.addAttribute("search", new Search());
-        return "supplier/suppliers";
-    }
-
-    //detail supplier
-    @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
-    public String getSupplier(ModelMap model, @PathVariable int id) {
-        model.addAttribute("supplier", supplierService.getSupplier(id));
-        model.addAttribute("region", locationDao.getRegionById(supplierService.getSupplier(id).getRegionId()));
-        return "supplier/detail";
     }
 
     //add supplier
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSupplier", method = RequestMethod.POST)
     public String save(@ModelAttribute("supplier") MstSupplier supplier, Model model) {
 //        if (result.hasErrors()) {
 //            model.addAttribute("user", user);
@@ -103,45 +63,12 @@ public class SupplierController {
         return "redirect:/suppliers";//will redirect to viewemp request mapping
     }
 
-    //edit supplier
-    //index supplier
-    @RequestMapping(value = "/supplierFormEdit/{id}", method = RequestMethod.GET)
-    public String editSupplier(Model model,@PathVariable int id) {
-        //data for table
-        List<MstSupplier> list = supplierService.getSuppliers();
-        model.addAttribute("suppliers", list);
-        //data for pop up table
-        List<MstProvince> allProvince = locationDao.getAllProvince();
-        Map<Integer, String> province = new HashMap<>();
-        for (MstProvince curProvince : allProvince) {
-            province.put(curProvince.getId(), curProvince.getName());
-        }
-        List<MstRegion> allRegion = locationDao.getAllRegion();
-        Map<Integer, String> region = new HashMap<>();
-        for (MstRegion curegion : allRegion) {
-            region.put(curegion.getId(), curegion.getName());
-        }
-        List<MstDistrict> allDistrict = locationDao.getAllDistrict();
-        Map<Integer, String> district = new HashMap<>();
-        for (MstDistrict curdistrict : allDistrict) {
-            district.put(curdistrict.getId(), curdistrict.getName());
-        }
-
-        model.addAttribute("supplierEdit", supplierService.getSupplier(id));
-        model.addAttribute("province", province);
-        model.addAttribute("region", region);
-        model.addAttribute("district", district);
-        return "supplier/supplierEditForm";
-    }
-
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@ModelAttribute("supplier") MstSupplier supplier, Model model) {
-//        if (result.hasErrors()) {
-//            model.addAttribute("user", user);
-//            return "userForm";
-//        }
-        supplierService.update(supplier);
-        return "redirect:/suppliers";//will redirect to viewemp request mapping
+    //REST get supplier
+    @RequestMapping(value = "/supplierJson/{id}" , method = RequestMethod.GET)
+    public @ResponseBody
+    MstSupplier getSupplier(@PathVariable int id) {
+        //do business logic
+        return supplierService.getSupplier(id);
     }
 
     //delete
@@ -149,7 +76,7 @@ public class SupplierController {
     public String delete(@PathVariable int id) {
         MstSupplier supplier = supplierService.getSupplier(id);
         supplier.setActive(1);
-        supplierService.update(supplier);
+        supplierService.save(supplier);
         return "redirect:/suppliers";
     }
 
@@ -161,4 +88,33 @@ public class SupplierController {
 //        binder.addValidators(userValidator);
 //    }
 
+    //edit supplier
+    //index supplier
+//    @RequestMapping(value = "/supplierFormEdit/{id}", method = RequestMethod.GET)
+//    public String editSupplier(Model model, @PathVariable int id) {
+//        //data for table
+//        List<MstSupplier> list = supplierService.getSuppliers();
+//        model.addAttribute("suppliers", list);
+//        //data for pop up table
+//        List<MstProvince> allProvince = locationDao.getAllProvince();
+//        Map<Integer, String> province = new HashMap<>();
+//        for (MstProvince curProvince : allProvince) {
+//            province.put(curProvince.getId(), curProvince.getName());
+//        }
+//        List<MstRegion> allRegion = locationDao.getAllRegion();
+//        Map<Integer, String> region = new HashMap<>();
+//        for (MstRegion curegion : allRegion) {
+//            region.put(curegion.getId(), curegion.getName());
+//        }
+//        List<MstDistrict> allDistrict = locationDao.getAllDistrict();
+//        Map<Integer, String> district = new HashMap<>();
+//        for (MstDistrict curdistrict : allDistrict) {
+//            district.put(curdistrict.getId(), curdistrict.getName());
+//        }
+//        model.addAttribute("supplierEdit", supplierService.getSupplier(id));
+//        model.addAttribute("province", province);
+//        model.addAttribute("region", region);
+//        model.addAttribute("district", district);
+//        return "supplier/supplierEditForm";
+//    }
 }

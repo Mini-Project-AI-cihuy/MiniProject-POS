@@ -23,12 +23,6 @@ public class SupplierServiceImpl implements SupplierService {
 
     @Override
     @Transactional(readOnly = false)
-    public void update(MstSupplier supplier) {
-        supplierDao.update(supplier);
-    }
-
-    @Override
-    @Transactional(readOnly = false)
     public void delete(MstSupplier supplier) {
         supplierDao.delete(supplier);
     }

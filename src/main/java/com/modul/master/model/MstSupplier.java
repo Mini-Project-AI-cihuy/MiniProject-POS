@@ -37,7 +37,7 @@ public class MstSupplier {
     @Column(name = "active")
     private int active;
 
-        @ManyToOne(targetEntity = MstDistrict.class, fetch = FetchType.EAGER)
+    @ManyToOne(targetEntity = MstDistrict.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "district_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstDistrict mstDistrict;
 
