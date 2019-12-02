@@ -12,13 +12,13 @@ public class MstCategory {
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name="created_by")
+    @Column(name="created_by", nullable = true)
     private int createdBy;
-    @Column(name="created_on")
+    @Column(name="created_on", nullable = true)
     private Date createdOn;
-    @Column(name="modified_by")
+    @Column(name="modified_by", nullable = true)
     private int modifiedBy;
-    @Column(name="modified_on")
+    @Column(name="modified_on", nullable = true)
     private Date modifiedOn;
     @Column(name="active")
     private int active;
@@ -71,24 +71,11 @@ public class MstCategory {
         this.modifiedOn = modifiedOn;
     }
 
-    public int isActive() {
+    public int getActive() {
         return active;
     }
 
     public void setActive(int active) {
         this.active = active;
-    }
-
-    @Override
-    public String toString() {
-        return "MstCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", createdBy=" + createdBy +
-                ", createdOn=" + createdOn +
-                ", modifiedBy=" + modifiedBy +
-                ", modifiedOn=" + modifiedOn +
-                ", active=" + active +
-                '}';
     }
 }

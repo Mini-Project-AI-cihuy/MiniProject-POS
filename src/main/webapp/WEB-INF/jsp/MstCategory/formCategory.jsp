@@ -6,16 +6,16 @@
 <head>
     <title>Add New Category</title>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css' />" rel="stylesheet"/>
-</head>
+</head> 
 <body>
 <div class="container">
     <%--    <h1>Category</h1>--%>
     <%--    <hr>--%>
-    <form:form method="post" action="/addCategory" commandName="category" class="form-horizontal">
+    <form:form method="post" action="/saveCategory" commandName="category" class="form-horizontal">
         <div class="form-group">
                 <%--            <label class="control-label col-md-3">Category Name</label>--%>
             <div class="col-md-7">
-                <form:input type="text" class="form-control mx-sm-3" placeholder="Category Name" path="name"/>
+                <form:input type="text" class="form-control mx-sm-3" placeholder="Category Name" path="name" id="name"/>
                 <form:errors path="name" cssStyle="color:#FF000" />
             </div>
         </div>
