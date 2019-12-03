@@ -59,6 +59,60 @@
             $('#email').val("");
         });
 
+        //dropdown for region
+        window.onload = function () { // when the page has loaded
+            document.getElementById("province").onchange = function () {
+                var idProvince = $("#province").val();
+                window.alert(idProvince);
+                $.ajax({
+                    url: "/regionJson/" + idProvince,
+                    method: "get",
+                    dataType: "json",
+                    success:
+                        function (data) {
+                            let dropdown = $('#region');
+                            dropdown.empty();
+                            dropdown.append('<option selected="true" disabled>-SELECT REGION-</option>');
+                            dropdown.prop('selectedIndex', 0);
+
+                            let dropdownD = $('#district');
+                            dropdownD.empty();
+                            dropdownD.append('<option selected="true" disabled>-SELECT DISTRICT-</option>');
+                            dropdownD.prop('selectedIndex', 0);
+
+                            data.forEach(function (entry) {
+                                dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                            })
+                        },
+                });
+            },
+            document.getElementById("region").onchange = function () {
+                var idRegion = $("#region").val();
+                window.alert(idRegion);
+                $.ajax({
+                    url: "/districtJson/" + idRegion,
+                    method: "get",
+                    dataType: "json",
+                    success:
+                        function (data) {
+                            let dropdown = $('#district');
+                            dropdown.empty();
+                            dropdown.append('<option selected="true" disabled>-SELECT DISTRICT-</option>');
+                            dropdown.prop('selectedIndex', 0);
+                            data.forEach(function (entry) {
+                                dropdown.append($('<option></option>').attr('value', entry.id).text(entry.name));
+                            })
+                        },
+                });
+            },
+            document.getElementById("district").onchange = function () {
+                var idRegion = $("#district").val();
+                window.alert(idRegion);
+            }
+        }
+
+
+
     </script>
 </head>
 

@@ -37,17 +37,17 @@ public class MstSupplier {
     @Column(name = "active")
     private int active;
 
-    @ManyToOne(targetEntity = MstDistrict.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "district_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private MstDistrict mstDistrict;
+    @ManyToOne(targetEntity = MstProvince.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "province_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private MstProvince mstProvinces;
 
     @ManyToOne(targetEntity = MstRegion.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "region_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstRegion mstRegion;
 
-    @ManyToOne(targetEntity = MstProvince.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "province_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private MstProvince mstProvinces;
+    @ManyToOne(targetEntity = MstDistrict.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "district_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private MstDistrict mstDistrict;
 
     public int getId() {
         return id;

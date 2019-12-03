@@ -18,26 +18,26 @@
 <body>
 
 <div class="container-fluid">
-    <form:form method="post" action="/updateSupplier" class="form-horizontal" commandName="itemInventory">
+    <form:form method="post" action="/updateSupplier" class="form-horizontal" commandName="itemVarian">
     <div class="form-group">
         <form:hidden path="id" id="id"/>
         <div class="row">
             <div class="form-group">
                 <label class="control-label col-md-6">Variant Name</label>
                 <div class="col-md-12">
-                    <form:input id="name" type="text" class="form-control" path="mstItemVariant.name"/>
+                    <form:input id="name" type="text" class="form-control" path="name"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-6">Unit Price</label>
                 <div class="col-md-12">
-                    <form:input id="price" type="text" class="form-control" path="mstItemVariant.price"/>
+                    <form:input id="price" type="text" class="form-control" path="price"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-6">SKU</label>
                 <div class="col-md-12">
-                    <form:input id="sku" type="text" class="form-control" path="mstItemVariant.sku"/>
+                    <form:input id="sku" type="text" class="form-control" path="sku"/>
                 </div>
             </div>
         </div>
@@ -46,13 +46,13 @@
             <div class="form-group">
                 <label class="control-label col-md-6">Beginning Stock</label>
                 <div class="col-md-12">
-                    <form:input id="beginning" type="text" class="form-control" path="beginning"/>
+                    <input id="beginning" type="text" class="form-control" name="beginning"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-md-6">alert at</label>
                 <div class="col-md-12">
-                    <form:input id="alert" type="text" class="form-control" path="alertAtQty"/>
+                    <input id="alertAt" type="text" class="form-control" name="alertAt"/>
                 </div>
             </div>
         </div>

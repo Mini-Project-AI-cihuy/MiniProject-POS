@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "pos_item_inventory")
 public class MstItemInventory {
-
+    @GeneratedValue
     @Id
     @Column(name = "id",nullable = false)
     private int id;

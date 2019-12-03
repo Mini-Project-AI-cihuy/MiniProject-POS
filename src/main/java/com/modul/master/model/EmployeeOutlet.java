@@ -28,8 +28,6 @@ public class EmployeeOutlet {
     @JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstEmployee mstEmployee;
 
-
-
     public EmployeeOutlet() {
     }
 

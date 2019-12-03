@@ -2,13 +2,14 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
-<%@ taglib  uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Items</title>
-<%--    <security:authorize access="isAuthenticated()">--%>
-<%--        authenticated as <security:authentication property="principal.username" />--%>
-<%--    </security:authorize>--%>
+    <%--    <security:authorize access="isAuthenticated()">--%>
+    <%--        authenticated as <security:authentication property="principal.username" />--%>
+    <%--    </security:authorize>--%>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-grid.css' />" rel="stylesheet"/>
     <link type="text/css" href="<c:url value='/resources/bootstrap/css/bootstrap-reboot.css' />" rel="stylesheet"/>
@@ -31,6 +32,7 @@
         });
         //add
         //edit
+        //format rupiah
     </script>
 </head>
 <body>
@@ -103,7 +105,8 @@
             <div class="container text-center">
                 <div class="container form-group text-left" style="margin-bottom: 10px">
                     <input type="text" style="width: 300px" id="any" placeholder="Search..."/>
-                    <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#modalItems">
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                            data-target="#modalItems">
                         Create
                     </button>
                 </div>
@@ -115,7 +118,7 @@
                         <tr>
                             <th width="80">Name</th>
                             <th width="120">Category</th>
-                            <th width="120">Unit Price</th>
+                            <th width="160">Unit Price</th>
                             <th width="120">In Stock</th>
                             <th width="120">Stock Alert</th>
                             <th width="60">#</th>
@@ -123,9 +126,10 @@
                         <tbody id="item-table"
                         <c:forEach items="${items}" var="itemInventory">
                             <tr>
-                                <td>${itemInventory.mstItemVariant.mstItem.name} - ${itemInventory.mstItemVariant.name}</td>
+                                <td>${itemInventory.mstItemVariant.mstItem.name}
+                                    - ${itemInventory.mstItemVariant.name}</td>
                                 <td>${itemInventory.mstItemVariant.mstItem.mstCategory.name}</td>
-                                <td>Rp. ${itemInventory.mstItemVariant.price}</td>
+                                <td>Rp.     <fmt:formatNumber>${itemInventory.mstItemVariant.price}</fmt:formatNumber></td>
                                 <td> ${itemInventory.endingQty}</td>
                                 <c:if test="${itemInventory.endingQty <= itemInventory.alertAtQty}">
                                     <td>Low</td>
@@ -136,10 +140,12 @@
 
                                 <td>
                                         <%--                                    <a href="/supplierFormEdit/${item.id}">Edit</a>--%>
-<%--                                    <a href="#" name="edit" data-toggle="modal" id="${itemInventory.mstItemVariant.mstItem.id}" class="edit_data" --%>
-<%--                                       data-target="#ModalAdd">Edit</a>--%>
-                                    <button type="button" class="btn btn-link edit_data" id="${itemInventory.mstItemVariant.mstItem.id}" data-toggle="modal"
-                                            data-target="#modalItems">Edit</button>
+                                        <%--                                    <a href="#" name="edit" data-toggle="modal" id="${itemInventory.mstItemVariant.mstItem.id}" class="edit_data" --%>
+                                        <%--                                       data-target="#ModalAdd">Edit</a>--%>
+                                    <button type="button" class="btn btn-link edit_data"
+                                            id="${itemInventory.mstItemVariant.mstItem.id}" data-toggle="modal"
+                                            data-target="#modalItems">Edit
+                                    </button>
                                         <%--                                    <a data-toggle="modal" href="#ModalEdit">Edit</a>--%>
                                 </td>
                             </tr>

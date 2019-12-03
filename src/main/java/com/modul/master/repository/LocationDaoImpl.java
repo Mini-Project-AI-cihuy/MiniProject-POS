@@ -3,8 +3,10 @@ package com.modul.master.repository;
 import com.modul.master.model.MstDistrict;
 import com.modul.master.model.MstProvince;
 import com.modul.master.model.MstRegion;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +41,22 @@ public class LocationDaoImpl implements LocationDao{
     public List<MstRegion> getAllRegion() {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(MstRegion.class).list();
+    }
+
+    @Override
+    public List<MstRegion> getAllRegionbyProvince(int idProvince) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(MstRegion.class);
+        criteria.add(Restrictions.eq("provinceId", idProvince));
+        return criteria.list();
+    }
+
+    @Override
+    public List<MstDistrict> getAllDistrictbyRegion(int idRegion) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(MstDistrict.class);
+        criteria.add(Restrictions.eq("regionId", idRegion));
+        return criteria.list();
     }
 
     @Override

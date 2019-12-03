@@ -8,6 +8,7 @@ import java.util.Date;
 @Table(name="pos_mst_item")
 public class MstItem {
 
+    @GeneratedValue
     @Id
     @Column(name="id")
     private int id;
@@ -29,6 +30,15 @@ public class MstItem {
     @ManyToOne(targetEntity = MstCategory.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "CATEGORY_ID", referencedColumnName = "id", insertable = false, updatable = false)
     private MstCategory mstCategory;
+
+    public MstItem() {
+    }
+
+    public MstItem(String name, int categoryId) {
+        this.name = name;
+        this.categoryId = categoryId;
+        this.active=0;
+    }
 
     public int getId() {
         return id;

@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label class="control-label col-md-6">Province</label>
                 <div class="col-md-12">
-                    <form:select id="province" path="provinceId" class="form-control">
+                    <form:select id="province" path="provinceId" class="target form-control">
                         <form:option value="0" label="-SELECT PROVINCE-"/>
                         <form:options items="${province}"/>
                     </form:select>

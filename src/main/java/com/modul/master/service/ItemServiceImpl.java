@@ -35,8 +35,6 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<MstItemInventory> getAllItems() {
-        List<MstItemInventory> item = itemDao.getAllItems();
-
         return itemDao.getAllItems();
     }
 }

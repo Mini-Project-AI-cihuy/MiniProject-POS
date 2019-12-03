@@ -69,9 +69,9 @@
 
     <!-- spring security configuration -->
     <http auto-config="true" use-expressions="true">
-<!--        <intercept-url pattern="/suppliers" access="hasAuthority('Administrator')"/>-->
-<!--        <intercept-url pattern="/listCategory" access="hasAuthority('Administrator')"/>-->
-<!--        <intercept-url pattern="/items" access="hasAnyAuthority('Administrator','User')"/>-->
+        <intercept-url pattern="/suppliers" access="hasAuthority('Administrator')"/>
+        <intercept-url pattern="/listCategory" access="hasAuthority('Administrator')"/>
+        <intercept-url pattern="/items" access="hasAnyAuthority('Administrator','User')"/>
 
         <!-- user-defined login form redirection -->
         <form-login login-page="/login"

@@ -18,17 +18,16 @@
 </head>
 <body>
 <div class="container-fluid">
-    <form:form method="post" action="/updateSupplier" class="form-horizontal" commandName="itemInventory">
+    <form:form method="post" action="/updateSupplier" class="form-horizontal" commandName="item">
     <div class="form-group">
-        <form:hidden path="mstItemVariant.mstItem.id" id="itemId"/>
+        <form:hidden path="id" id="itemId"/>
         <div class="col-md-12">
-            <form:input type="text" class="form-control" path="mstItemVariant.mstItem.name" id="name" placeholder="Item Name"/>
-                <%--                <form:errors path="name" cssStyle="color:#FF000" />--%>
+            <form:input type="text" class="form-control" path="name" id="name" placeholder="Item Name"/>
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-12">
-            <form:select id="category" path="mstItemVariant.mstItem.mstCategory.id" class="form-control">
+            <form:select id="category" path="categoryId" class="form-control">
                 <form:option value="0" label="Choose Category"/>
                 <form:options items="${category}"/>
             </form:select>

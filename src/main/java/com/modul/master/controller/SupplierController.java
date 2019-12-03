@@ -63,13 +63,6 @@ public class SupplierController {
         return "redirect:/suppliers";//will redirect to viewemp request mapping
     }
 
-    //REST get supplier
-    @RequestMapping(value = "/supplierJson/{id}" , method = RequestMethod.GET)
-    public @ResponseBody
-    MstSupplier getSupplier(@PathVariable int id) {
-        //do business logic
-        return supplierService.getSupplier(id);
-    }
 
     //delete
     @RequestMapping(value = "/deactivatedSupplier/{id}", method = RequestMethod.GET)
@@ -80,6 +73,13 @@ public class SupplierController {
         return "redirect:/suppliers";
     }
 
+    //REST get supplier
+    @RequestMapping(value = "/supplierJson/{id}" , method = RequestMethod.GET)
+    public @ResponseBody
+    MstSupplier getRegions(@PathVariable int id) {
+        //do business logic
+        return supplierService.getSupplier(id);
+    }
 
 //    @Autowired
 //    UserValidator userValidator;

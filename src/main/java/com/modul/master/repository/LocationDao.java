@@ -16,6 +16,11 @@ public interface LocationDao {
 
     public List<MstRegion> getAllRegion() ;
 
+    public List<MstRegion> getAllRegionbyProvince(int idProvince) ;
+
+    public List<MstDistrict> getAllDistrictbyRegion(int idRegion) ;
+
+
     public MstDistrict getDistrictById(int district_id) ;
 
     public List<MstDistrict> getAllDistrict() ;

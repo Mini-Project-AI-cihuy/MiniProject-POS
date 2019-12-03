@@ -6,12 +6,12 @@ import java.util.Date;
 @Entity
 @Table(name="pos_mst_item_variant")
 public class MstItemVariant {
-
+    @GeneratedValue
     @Id
     @Column(name="id")
     private int id;
     @Column(name = "item_id")
-    private String itemId;
+    private int itemId;
     @Column(name="name")
     private String name;
     @Column(name="sku", nullable = true)
@@ -31,6 +31,18 @@ public class MstItemVariant {
     @JoinColumn(name = "item_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstItem mstItem;
 
+    public MstItemVariant() {
+    }
+
+
+    public MstItemVariant(int itemId, String name, String sku, int price) {
+        this.itemId = itemId;
+        this.name = name;
+        this.sku = sku;
+        this.price = price;
+        this.active = 0;
+    }
+
     public int getId() {
         return id;
     }
@@ -39,11 +51,11 @@ public class MstItemVariant {
         this.id = id;
     }
 
-    public String getItemId() {
+    public int getItemId() {
         return itemId;
     }
 
-    public void setItemId(String itemId) {
+    public void setItemId(int itemId) {
         this.itemId = itemId;
     }
 
