@@ -49,6 +49,7 @@ public class MstSupplier {
     @JoinColumn(name = "district_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstDistrict mstDistrict;
 
+
     public int getId() {
         return id;
     }

@@ -19,6 +19,7 @@
     </beans:bean>
     <!--    <bean id="userValidator" class="com.modul.master.validator.UserValidator" />-->
 
+
     <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <beans:property name="location">
             <beans:value>classpath:application.properties</beans:value>

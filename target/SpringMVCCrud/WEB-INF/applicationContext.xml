@@ -19,6 +19,7 @@
     </beans:bean>
     <!--    <bean id="userValidator" class="com.modul.master.validator.UserValidator" />-->
 
+
     <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <beans:property name="location">
             <beans:value>classpath:application.properties</beans:value>
@@ -69,9 +70,9 @@
 
     <!-- spring security configuration -->
     <http auto-config="true" use-expressions="true">
-<!--        <intercept-url pattern="/suppliers" access="hasAuthority('Administrator')"/>-->
-<!--        <intercept-url pattern="/listCategory" access="hasAuthority('Administrator')"/>-->
-<!--        <intercept-url pattern="/items" access="hasAnyAuthority('Administrator','User')"/>-->
+        <intercept-url pattern="/suppliers" access="hasAuthority('Administrator')"/>
+        <intercept-url pattern="/listCategory" access="hasAuthority('Administrator')"/>
+        <intercept-url pattern="/items" access="hasAnyAuthority('Administrator','User')"/>
 
         <!-- user-defined login form redirection -->
         <form-login login-page="/login"
