@@ -10,5 +10,8 @@
         <module name="MiniProject-POS" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="SpringMVCCrud" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
