@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib  uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
     <title>Outlet Page</title>
@@ -27,8 +28,11 @@
                  alt="..." width="65"
                  class="mr-3 rounded-circle img-thumbnail shadow-sm">
             <div class="media-body">
-                <h4 class="m-0 text-white">User Name</h4>
-                <p class="font-weight-light text-white mb-0">Role</p>
+                <c:if test="${pageContext.request.userPrincipal.name != null}">
+                    <h4 class="m-0 text-white"><span>Hello, ${pageContext.request.userPrincipal.name}</span></h4>
+                    <h5 class="m-0 text-white"><sec:authentication property="principal.authorities"/></h5>
+                    <span><a id="logout" href="${pageContext.servletContext.contextPath}/logout">Logout</a></span>
+                </c:if>
             </div>
         </div>
     </div>

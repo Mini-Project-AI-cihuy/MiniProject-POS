@@ -55,9 +55,7 @@ public class MstItemVariant {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
+    public void setItemId(int itemId) { this.itemId=itemId;}
 
     public String getName() {
         return name;
