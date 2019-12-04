@@ -32,16 +32,13 @@ public class MstUser {
 	@Column(name = "active")
 	private boolean active;
 
-
 	@ManyToOne(targetEntity = MstRole.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private MstRole mstRole;
 
-
 	@OneToOne(targetEntity = MstEmployee.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private MstEmployee mstEmployee;
-
 
 	public int getId() {
 		return id;

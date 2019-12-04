@@ -32,8 +32,8 @@ public class MstEmployee {
 	@Column(name = "active")
 	private boolean active;
 
-//	@OneToOne(mappedBy = "mstEmployee", cascade = CascadeType.ALL)
-//	private EmployeeOutlet employeeOutlet;
+	@OneToOne(mappedBy = "mstEmployee", cascade = CascadeType.ALL)
+	private EmployeeOutlet employeeOutlet;
 
 	public int getId() {
 		return id;
