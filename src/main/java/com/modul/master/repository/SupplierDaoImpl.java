@@ -58,3 +58,4 @@ public class SupplierDaoImpl implements SupplierDao {
         return criteria.list();
     }
 }
+

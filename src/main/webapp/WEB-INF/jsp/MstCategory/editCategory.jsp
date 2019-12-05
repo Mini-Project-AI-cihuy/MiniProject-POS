@@ -25,7 +25,7 @@
             <div class="form-group">
                     <%--        <label class="control-label col-md-3">Category Name</label>--%>
                 <form:input type="text" class="form-control" path="name" id="name"/>
-                <form:errors path="name" cssStyle="color:#FF000"/>
+<%--                <form:errors path="name" cssStyle="color:#FF000"/>--%>
             </div>
             <input type="submit" class="btn btn-primary float-right" value="Save"/>
             <input type="reset" class="btn btn-primary float-right" style="margin-right: 10px" value="Cancel">

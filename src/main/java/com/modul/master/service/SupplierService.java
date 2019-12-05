@@ -14,3 +14,4 @@ public interface SupplierService {
     public List<MstSupplier> getSuppliers();
     public List<MstSupplier> searchSuppliers(String search);
 }
+

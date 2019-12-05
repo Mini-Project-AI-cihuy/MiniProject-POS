@@ -42,12 +42,10 @@
                 }
             });
         });
-    </script>
-    <script>
-        //add
-        $(document).on('click', '.add_data', function () {
-            $('#name').val("");
-        });
+        // //add
+        // $(document).on('click', '.add_data', function () {
+        //     $('#name').val("");
+        // });
     </script>
 </head>
 <body>
@@ -120,7 +118,7 @@
                 <!-- displaying the logged in user details. -->
                 <div class="container form-group text-left" style="margin-bottom: 10px">
                     <input type="text" style="width: 300px" id="any" placeholder="Search..."/>
-                    <button type="button" class="btn btn-primary float-right add_data" data-toggle="modal"
+                    <button type="button" class="btn btn-primary float-right" data-toggle="modal"
                             data-target="#modalCreateCategory">
                         Create
                     </button>

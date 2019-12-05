@@ -41,4 +41,6 @@ public class SupplierServiceImpl implements SupplierService {
     public List<MstSupplier> searchSuppliers(String search) {
         return supplierDao.searchSuppliers(search);
     }
+
 }
+

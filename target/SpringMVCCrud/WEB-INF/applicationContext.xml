@@ -53,6 +53,11 @@
                 <beans:value>com.modul.master.model.TrAdjustment</beans:value>
                 <beans:value>com.modul.master.model.TrAdjustmentDetail</beans:value>
                 <beans:value>com.modul.master.model.TrAdjustmentHistory</beans:value>
+                <beans:value>com.modul.master.model.TrPurchaseRequest</beans:value>
+                <beans:value>com.modul.master.model.TrPurchaseRequestDetail</beans:value>
+                <beans:value>com.modul.master.model.TrPurchaseOrder</beans:value>
+                <beans:value>com.modul.master.model.TrPurchaseOrderDetail</beans:value>
+
             </beans:list>
         </beans:property>
 
@@ -80,7 +85,7 @@
 
         <!-- user-defined login form redirection -->
         <form-login login-page="/login"
-                    default-target-url="/listCategory"
+                    default-target-url="/chooseOutlet"
                     authentication-failure-url="/login?error"
                     username-parameter="username"
                     password-parameter="password" />
