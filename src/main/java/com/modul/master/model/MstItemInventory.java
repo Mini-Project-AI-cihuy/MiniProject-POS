@@ -6,6 +6,17 @@ import java.util.Date;
 @Entity
 @Table(name = "pos_item_inventory")
 public class MstItemInventory {
+
+    public MstItemInventory() {
+    }
+
+    public MstItemInventory(int variantId, int outletId, int beginning, int alertAtQty) {
+        this.variantId = variantId;
+        this.outletId = outletId;
+        this.beginning = beginning;
+        this.alertAtQty = alertAtQty;
+    }
+
     @GeneratedValue
     @Id
     @Column(name = "id",nullable = false)

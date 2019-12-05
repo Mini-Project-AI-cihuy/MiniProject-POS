@@ -12,5 +12,6 @@ public interface ItemService {
     public void update(MstItemInventory mstItemInventory);
     public MstItemInventory getItemById(int id);
     public List<MstItemInventory> getAllItems();
+    public List<MstItemInventory> getAllItemsbyOutletId(int outletId);
 
 }

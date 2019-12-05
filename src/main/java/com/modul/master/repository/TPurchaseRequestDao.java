@@ -1,18 +1,17 @@
-package com.modul.master.service;
+package com.modul.master.repository;
 
 import com.modul.master.model.TPurchaseRequest;
 import com.modul.master.model.TPurchaseRequestDetail;
 
 import java.util.List;
 
-public interface TPurchaseRequestService {
+public interface TPurchaseRequestDao {
     //PR
-    public void saveOrupdatePR(TPurchaseRequest tPurchaseRequest);
+    public List<TPurchaseRequest> getPRByOutletId(int outletId);
+    public List<TPurchaseRequest> getPRByStatus(String status,int outletId);
     public TPurchaseRequest getPRById(int id);
-    public List<TPurchaseRequest> getAllPR();
 
-    //PR Detail
-    public void saveOrupdatePRDetail(TPurchaseRequestDetail tPurchaseRequestDetail);
-    public TPurchaseRequestDetail getPRDetailById(int id);
-    public List<TPurchaseRequestDetail> getAllPRDetail();
+    //pr detail
+    public List<TPurchaseRequestDetail> getPRDetailByprId(int prId);
+
 }

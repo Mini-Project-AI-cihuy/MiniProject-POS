@@ -1,25 +1,20 @@
 package com.modul.master.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "pos_t_pr")
-public class TPurchaseRequest {
+@Table(name = "pos_t_pr_detail")
+public class TPurchaseRequestDetail {
     @Id
     @Column(name = "id")
     private int id;
-    @Column(name = "outlet_id")
-    private int outletId;
-    @Column(name = "ready_time")
-    private Date readyTime;
-    @Column(name = "pr_no")
-    private String notes;
-    @Column(name = "status")
-    private String status;
+    @Column(name = "pr_id")
+    private int prId;
+    @Column(name = "variant_id")
+    private int variant_id;
+    @Column(name = "request_qty")
+    private int requestQty;
     @Column(name = "created_by", nullable = true)
     private int createdBy;
     @Column(name = "created_on", nullable = true)
@@ -29,6 +24,14 @@ public class TPurchaseRequest {
     @Column(name = "modified_on", nullable = true)
     private Date modifiedOn;
 
+    @OneToOne(targetEntity = TPurchaseRequest.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "pr_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private TPurchaseRequest tPurchaseRequest;
+
+    @ManyToOne(targetEntity = MstItemVariant.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "variant_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private MstItemVariant mstItemVariant;
+
     public int getId() {
         return id;
     }
@@ -37,36 +40,28 @@ public class TPurchaseRequest {
         this.id = id;
     }
 
-    public int getOutletId() {
-        return outletId;
+    public int getPrId() {
+        return prId;
     }
 
-    public void setOutletId(int outletId) {
-        this.outletId = outletId;
+    public void setPrId(int prId) {
+        this.prId = prId;
     }
 
-    public Date getReadyTime() {
-        return readyTime;
+    public int getVariant_id() {
+        return variant_id;
     }
 
-    public void setReadyTime(Date readyTime) {
-        this.readyTime = readyTime;
+    public void setVariant_id(int variant_id) {
+        this.variant_id = variant_id;
     }
 
-    public String getNotes() {
-        return notes;
+    public int getRequestQty() {
+        return requestQty;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setRequestQty(int requestQty) {
+        this.requestQty = requestQty;
     }
 
     public int getCreatedBy() {
@@ -99,5 +94,21 @@ public class TPurchaseRequest {
 
     public void setModifiedOn(Date modifiedOn) {
         this.modifiedOn = modifiedOn;
+    }
+
+    public TPurchaseRequest gettPurchaseRequest() {
+        return tPurchaseRequest;
+    }
+
+    public void settPurchaseRequest(TPurchaseRequest tPurchaseRequest) {
+        this.tPurchaseRequest = tPurchaseRequest;
+    }
+
+    public MstItemVariant getMstItemVariant() {
+        return mstItemVariant;
+    }
+
+    public void setMstItemVariant(MstItemVariant mstItemVariant) {
+        this.mstItemVariant = mstItemVariant;
     }
 }
