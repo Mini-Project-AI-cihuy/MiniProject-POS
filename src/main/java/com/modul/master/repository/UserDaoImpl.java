@@ -16,6 +16,26 @@ public class UserDaoImpl implements UserDao {
     SessionFactory sessionFactory;
 
     @Override
+    public void save(MstUser user) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(user);
+        session.flush();
+    }
+
+    @Override
+    public void delete(MstUser user) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(user);
+        session.flush();
+    }
+
+    @Override
+    public MstUser getUserId(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        return (MstUser) session.get(MstUser.class, id);
+    }
+
+    @Override
     public List<MstUser> getUser() {
         Session session = sessionFactory.getCurrentSession();
         Criteria crit = session.createCriteria(MstUser.class);

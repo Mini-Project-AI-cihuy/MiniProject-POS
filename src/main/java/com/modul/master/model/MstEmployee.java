@@ -10,7 +10,8 @@ public class MstEmployee {
 
 	@Id
 	@Column(name = "id")
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	@Column(name = "first_name")
 	private String firstName;
 	@Column(name = "last_name")
@@ -30,16 +31,39 @@ public class MstEmployee {
 	@Column(name = "modified_on", nullable = true)
 	private Date modifiedOn;
 	@Column(name = "active")
-	private boolean active;
+	private int active;
 
 	@OneToOne(mappedBy = "mstEmployee", cascade = CascadeType.ALL)
 	private EmployeeOutlet employeeOutlet;
 
-	public int getId() {
+	@OneToOne(mappedBy = "mstEmployee", cascade = CascadeType.ALL)
+	private MstUser mstUser;
+
+	public MstEmployee() {
+
+	}
+
+	public MstEmployee(String firstName, String lastName, String email, String title, boolean haveAccount, int createdBy, Date createdOn, int modifiedBy, Date modifiedOn, int active, EmployeeOutlet employeeOutlet, MstUser mstUser) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.title = title;
+		this.haveAccount = haveAccount;
+		this.createdBy = createdBy;
+		this.createdOn = createdOn;
+		this.modifiedBy = modifiedBy;
+		this.modifiedOn = modifiedOn;
+		this.active = active;
+		this.employeeOutlet = employeeOutlet;
+		this.mstUser = mstUser;
+	}
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -115,19 +139,46 @@ public class MstEmployee {
 		this.modifiedOn = modifiedOn;
 	}
 
-	public boolean isActive() {
+	public int isActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(int active) {
 		this.active = active;
 	}
 
-//	public EmployeeOutlet getEmployeeOutlet() {
-//		return employeeOutlet;
-//	}
-//
-//	public void setEmployeeOutlet(EmployeeOutlet employeeOutlet) {
-//		this.employeeOutlet = employeeOutlet;
-//	}
+	public EmployeeOutlet getEmployeeOutlet() {
+		return employeeOutlet;
+	}
+
+	public void setEmployeeOutlet(EmployeeOutlet employeeOutlet) {
+		this.employeeOutlet = employeeOutlet;
+	}
+
+	public MstUser getMstUser() {
+		return mstUser;
+	}
+
+	public void setMstUser(MstUser mstUser) {
+		this.mstUser = mstUser;
+	}
+
+	@Override
+	public String toString() {
+		return "MstEmployee{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", email='" + email + '\'' +
+				", title='" + title + '\'' +
+				", haveAccount=" + haveAccount +
+				", createdBy=" + createdBy +
+				", createdOn=" + createdOn +
+				", modifiedBy=" + modifiedBy +
+				", modifiedOn=" + modifiedOn +
+				", active=" + active +
+				", employeeOutlet=" + employeeOutlet +
+				", mstUser=" + mstUser +
+				'}';
+	}
 }

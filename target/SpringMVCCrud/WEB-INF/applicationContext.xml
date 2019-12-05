@@ -50,6 +50,8 @@
                 <beans:value>com.modul.master.model.MstProvince</beans:value>
                 <beans:value>com.modul.master.model.MstRegion</beans:value>
                 <beans:value>com.modul.master.model.MstDistrict</beans:value>
+                <beans:value>com.modul.master.model.TrAdjustment</beans:value>
+                <beans:value>com.modul.master.model.TrAdjustmentDetail</beans:value>
             </beans:list>
         </beans:property>
 
@@ -72,12 +74,8 @@
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/suppliers" access="hasAuthority('Administrator')"/>
         <intercept-url pattern="/listCategory" access="hasAuthority('Administrator')"/>
-<<<<<<< HEAD
         <intercept-url pattern="/items" access="hasAnyAuthority('Administrator')"/>
         <intercept-url pattern="/outlets" access="hasAnyAuthority('Administrator')"/>
-=======
-        <intercept-url pattern="/items" access="hasAnyAuthority('Administrator','User')"/>
->>>>>>> e0d58d243cf701b6b2b1785118725152fcb6e347
 
         <!-- user-defined login form redirection -->
         <form-login login-page="/login"

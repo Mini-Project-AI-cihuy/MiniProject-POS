@@ -3,6 +3,7 @@ package com.modul.master.model;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="pos_mst_outlet")
@@ -46,6 +47,9 @@ public class MstOutlet {
     @ManyToOne(targetEntity = MstDistrict.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "district_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstDistrict mstDistrict;
+    @OneToMany(mappedBy = "mstOutlet", fetch = FetchType.EAGER)
+    private Set<TrAdjustment> adjustments;
+
 
     public MstOutlet() {
     }
@@ -177,6 +181,14 @@ public class MstOutlet {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public Set<TrAdjustment> getAdjustments() {
+        return adjustments;
+    }
+
+    public void setAdjustments(Set<TrAdjustment> adjustments) {
+        this.adjustments = adjustments;
     }
 
     @Override

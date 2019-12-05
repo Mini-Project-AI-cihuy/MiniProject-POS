@@ -50,6 +50,8 @@
                 <beans:value>com.modul.master.model.MstProvince</beans:value>
                 <beans:value>com.modul.master.model.MstRegion</beans:value>
                 <beans:value>com.modul.master.model.MstDistrict</beans:value>
+                <beans:value>com.modul.master.model.TrAdjustment</beans:value>
+                <beans:value>com.modul.master.model.TrAdjustmentDetail</beans:value>
             </beans:list>
         </beans:property>
 

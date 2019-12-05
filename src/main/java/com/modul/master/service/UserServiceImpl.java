@@ -22,9 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public MstUser getUserByEmail(String email) {
-       List<MstUser> listUser = userDao.getUser();
-       for (MstUser curUser: listUser) {
-            if (curUser.getMstEmployee().getEmail().equalsIgnoreCase(email)){
+        List<MstUser> listUser = userDao.getUser();
+        for (MstUser curUser : listUser) {
+            if (curUser.getMstEmployee().getEmail().equalsIgnoreCase(email)) {
                 return curUser;
             }
         }
@@ -35,6 +35,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(MstUser user) {
         userDao.updateUser(user);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void saveUser(MstUser user) {
+        userDao.save(user);
+    }
+
+    @Override
+    public void getUser(int id) {
+        userDao.getUserId(id);
+    }
+
+    @Transactional(readOnly = false)
+    @Override
+    public void deleteUser(MstUser user) {
+        userDao.delete(user);
     }
 
 

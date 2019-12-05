@@ -6,21 +6,23 @@ import sun.management.LazyCompositeData;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.IdentityHashMap;
 
 @Entity
 @Table(name = "pos_mst_user")
 public class MstUser {
 	@Id
 	@Column(name = "id")
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	@Column(name = "username")
 	private String username;
 	@Column(name = "password")
 	private String password;
-	@Column(name = "role_id")
-	private int roleId;
-	@Column(name = "employee_id")
-	private int employeeId;
+	@Column(name = "role_id", nullable = false)
+	private Integer roleId;
+	@Column(name = "employee_id", nullable = false)
+	private Integer employeeId;
 	@Column(name = "created_by",nullable = true)
 	private int createdBy;
 	@Column(name = "created_on", nullable = true)
@@ -32,19 +34,38 @@ public class MstUser {
 	@Column(name = "active")
 	private boolean active;
 
+
 	@ManyToOne(targetEntity = MstRole.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private MstRole mstRole;
+
 
 	@OneToOne(targetEntity = MstEmployee.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "employee_id", referencedColumnName = "id", insertable = false, updatable = false)
 	private MstEmployee mstEmployee;
 
-	public int getId() {
+	public MstUser() {
+	}
+
+	public MstUser(String username, String password, Integer roleId, Integer employeeId, int createdBy, Date createdOn, int modifiedBy, Date modifiedOn, boolean active, MstRole mstRole, MstEmployee mstEmployee) {
+		this.username = username;
+		this.password = password;
+		this.roleId = roleId;
+		this.employeeId = employeeId;
+		this.createdBy = createdBy;
+		this.createdOn = createdOn;
+		this.modifiedBy = modifiedBy;
+		this.modifiedOn = modifiedOn;
+		this.active = active;
+		this.mstRole = mstRole;
+		this.mstEmployee = mstEmployee;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -64,19 +85,36 @@ public class MstUser {
 		this.password = password;
 	}
 
-	public int getRoleId() {
+//	public int getRoleId() {
+//		return roleId;
+//	}
+//
+//	public void setRoleId(int roleId) {
+//		this.roleId = roleId;
+//	}
+//
+//	public int getEmployeeId() {
+//		return employeeId;
+//	}
+//
+//	public void setEmployeeId(int employeeId) {
+//		this.employeeId = employeeId;
+//	}
+
+
+	public Integer getRoleId() {
 		return roleId;
 	}
 
-	public void setRoleId(int roleId) {
+	public void setRoleId(Integer roleId) {
 		this.roleId = roleId;
 	}
 
-	public int getEmployeeId() {
+	public Integer getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -134,5 +172,23 @@ public class MstUser {
 
 	public void setMstEmployee(MstEmployee mstEmployee) {
 		this.mstEmployee = mstEmployee;
+	}
+
+	@Override
+	public String toString() {
+		return "MstUser{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", roleId=" + roleId +
+				", employeeId=" + employeeId +
+				", createdBy=" + createdBy +
+				", createdOn=" + createdOn +
+				", modifiedBy=" + modifiedBy +
+				", modifiedOn=" + modifiedOn +
+				", active=" + active +
+				", mstRole=" + mstRole +
+				", mstEmployee=" + mstEmployee +
+				'}';
 	}
 }
