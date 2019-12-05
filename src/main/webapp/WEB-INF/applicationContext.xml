@@ -57,7 +57,8 @@
                 <beans:value>com.modul.master.model.TrPurchaseRequestDetail</beans:value>
                 <beans:value>com.modul.master.model.TrPurchaseOrder</beans:value>
                 <beans:value>com.modul.master.model.TrPurchaseOrderDetail</beans:value>
-
+                <beans:value>com.modul.master.model.TPurchaseRequest</beans:value>
+                <beans:value>com.modul.master.model.TPurchaseRequestDetail</beans:value>
             </beans:list>
         </beans:property>
 
@@ -78,10 +79,15 @@
 
     <!-- spring security configuration -->
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/suppliers" access="hasAuthority('Administrator')"/>
-        <intercept-url pattern="/listCategory" access="hasAuthority('Administrator')"/>
-        <intercept-url pattern="/items" access="hasAnyAuthority('Administrator')"/>
-        <intercept-url pattern="/outlets" access="hasAnyAuthority('Administrator')"/>
+        <intercept-url pattern="/suppliers" access="hasAnyAuthority('Administrator','Back Office')"/>
+        <intercept-url pattern="/listCategory" access="hasAnyAuthority('Administrator','Back Office')"/>
+        <intercept-url pattern="/items" access="hasAnyAuthority('Administrator','Back Office')"/>
+        <intercept-url pattern="/outlets" access="hasAnyAuthority('Administrator','Back Office')"/>
+        <intercept-url pattern="/chooseOutlet" access="hasAnyAuthority('Administrator','Back Office')"/>
+        <intercept-url pattern="/listRequest" access="hasAuthority('Back Office')"/>
+        <intercept-url pattern="/listOrder" access="hasAuthority('Back Office')"/>
+        <intercept-url pattern="/viewAdjusts" access="hasAuthority('Back Office')"/>
+
 
         <!-- user-defined login form redirection -->
         <form-login login-page="/login"

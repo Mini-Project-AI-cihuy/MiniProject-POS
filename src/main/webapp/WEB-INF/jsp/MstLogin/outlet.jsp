@@ -32,4 +32,8 @@
     </div>
 </div>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> remotes/origin/ff/final

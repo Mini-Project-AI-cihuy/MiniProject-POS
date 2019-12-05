@@ -37,6 +37,12 @@ public class MstItemVariant {
     public MstItemVariant() {
     }
 
+    public MstItemVariant(String name, String sku, int price) {
+        this.name = name;
+        this.sku = sku;
+        this.price = price;
+        this.active = 0;
+    }
 
     public MstItemVariant(int itemId, String name, String sku, int price) {
         this.itemId = itemId;

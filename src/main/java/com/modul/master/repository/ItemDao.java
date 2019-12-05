@@ -12,5 +12,6 @@ public interface ItemDao {
     public void update(MstItemInventory mstItemInventory);
     public MstItemInventory getItemById(int id);
     public List<MstItemInventory> getAllItems();
+    public List<MstItemInventory> getAllItemsByOutletId(int outletId);
 
 }

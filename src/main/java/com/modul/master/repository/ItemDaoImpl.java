@@ -46,4 +46,12 @@ public class ItemDaoImpl implements ItemDao{
         Criteria crit = session.createCriteria(MstItemInventory.class);
         return crit.list();
     }
+
+    @Override
+    public List<MstItemInventory> getAllItemsByOutletId(int outletId) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria crit = session.createCriteria(MstItemInventory.class);
+        crit.add(Restrictions.eq("outletId",outletId));
+        return crit.list();
+    }
 }

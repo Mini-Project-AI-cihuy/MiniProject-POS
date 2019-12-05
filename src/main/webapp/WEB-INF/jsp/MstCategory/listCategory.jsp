@@ -66,7 +66,6 @@
             </div>
         </div>
     </div>
-
     <p class="text-white font-weight-bold text-uppercase px-3 small pb-4 mb-0">Main</p>
 
     <ul class="nav flex-column bg-dark mb-0">
@@ -101,6 +100,44 @@
             </a>
         </li>
     </ul>
+    <br>
+    <sec:authorize access="hasAuthority('Back Office') and isAuthenticated()">
+
+    <p class="text-white font-weight-bold text-uppercase px-3 small pb-4 mb-0">Transaction</p>
+
+    <ul class="nav flex-column bg-dark mb-0">
+        <li class="nav-item">
+            <a href="/listRequest" class="nav-link text-white font-italic">
+                <i class="fa fa-id-card-o mr-3 text-primary fa-fw"></i>
+                Purchase Request
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/listOrder" class="nav-link text-white font-italic">
+                <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+                Purchase Order
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/adjustment" class="nav-link text-white font-italic">
+                <i class="fa fa-truck mr-3 text-primary fa-fw"></i>
+                Adjustment
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/transferStock" class="nav-link text-white font-italic">
+                <i class="fa fa-shopping-bag mr-3 text-primary fa-fw"></i>
+                Transfer Stock
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/salesOrder" class="nav-link text-white font-italic">
+                <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+                Sales Order
+            </a>
+        </li>
+    </ul>
+    </sec:authorize>
 </div>
 <!-- End vertical navbar -->
 
@@ -122,6 +159,12 @@
                             data-target="#modalCreateCategory">
                         Create
                     </button>
+                    <sec:authorize access="hasAuthority('Administrator') and isAuthenticated()">
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                                data-target="#modalCreateCategory">
+                            Create
+                        </button>
+                    </sec:authorize>
                 </div>
 
                 <br/>
