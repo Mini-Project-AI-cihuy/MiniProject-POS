@@ -21,7 +21,7 @@ public class MstItemVariant {
     @Column(name="created_on", nullable = true)
     private Date createdOn;
     @Column(name="modified_by", nullable = true)
-    private int modifiedBy;
+    private Integer modifiedBy;
     @Column(name="modified_on", nullable = true)
     private Date modifiedOn;
     @Column(name="active")
@@ -30,6 +30,9 @@ public class MstItemVariant {
     @ManyToOne(targetEntity = MstItem.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "item_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstItem mstItem;
+
+    @OneToOne(mappedBy = "itemVariant", cascade = CascadeType.ALL)
+    private TrAdjustmentDetail adjustmentDetail;
 
     public MstItemVariant() {
     }
@@ -119,5 +122,13 @@ public class MstItemVariant {
 
     public void setMstItem(MstItem mstItem) {
         this.mstItem = mstItem;
+    }
+
+    public TrAdjustmentDetail getAdjustmentDetail() {
+        return adjustmentDetail;
+    }
+
+    public void setAdjustmentDetail(TrAdjustmentDetail adjustmentDetail) {
+        this.adjustmentDetail = adjustmentDetail;
     }
 }

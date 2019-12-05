@@ -19,8 +19,6 @@ import java.util.Map;
 public class EmployeeController {
 
     @Autowired
-//    UserServiceImpl userServiceImpl;
-
     UserEmployeeService userEmployeeService;
 
     @Autowired

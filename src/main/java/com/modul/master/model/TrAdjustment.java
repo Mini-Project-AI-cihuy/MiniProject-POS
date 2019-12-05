@@ -1,37 +1,44 @@
 package com.modul.master.model;
 
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
+
 
 @Entity
 @Table(name = "pos_t_adjustment")
 public class TrAdjustment {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "id", unique = true, nullable = false)
     private int id;
     @Column(name = "outlet_id")
     private int outletId;
-    @Column(name = "notes")
+    @Column(name = "notes", nullable = true)
     private String notes;
     @Column(name = "status")
     private String status;
-    @Column(name = "created_by")
-    private int createdBy;
-    @Column(name = "created_on")
+    @Column(name = "created_by", nullable = true)
+    private Integer createdBy;
+    @Column(name = "created_on", nullable = true)
     private Date createdOn;
-    @Column(name = "modified_by")
-    private int modifiedBy;
-    @Column(name = "modified_on")
+    @Column(name = "modified_by", nullable = true)
+    private Integer modifiedBy;
+    @Column(name = "modified_on", nullable = true)
     private  Date modifiedOn;
 
     @ManyToOne(targetEntity = MstOutlet.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "outlet_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MstOutlet mstOutlet;
+
+//    @OneToMany(mappedBy = "adjustment", fetch = FetchType.EAGER)
+//    private Set<TrAdjustmentDetail> adjustmentDetails;
+//
+//    @OneToMany(mappedBy = "trAdjustment", fetch = FetchType.EAGER)
+//    private List<TrAdjustmentHistory> adjustmentHistories;
+
 
     public int getId() {
         return id;
@@ -65,11 +72,11 @@ public class TrAdjustment {
         this.status = status;
     }
 
-    public int getCreatedBy() {
+    public Integer getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -81,11 +88,11 @@ public class TrAdjustment {
         this.createdOn = createdOn;
     }
 
-    public int getModifiedBy() {
+    public Integer getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(int modifiedBy) {
+    public void setModifiedBy(Integer modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
@@ -104,4 +111,27 @@ public class TrAdjustment {
     public void setMstOutlet(MstOutlet mstOutlet) {
         this.mstOutlet = mstOutlet;
     }
+
+//    public Set<TrAdjustmentDetail> getAdjustmentDetails() {
+//        return adjustmentDetails;
+//    }
+//
+//    public void setAdjustmentDetails(Set<TrAdjustmentDetail> adjustmentDetails) {
+//        this.adjustmentDetails = adjustmentDetails;
+//    }
+//
+//    public List<TrAdjustmentHistory> getAdjustmentHistories() {
+//        return adjustmentHistories;
+//    }
+//
+//    public void setAdjustmentHistories(List<TrAdjustmentHistory> adjustmentHistories) {
+//        this.adjustmentHistories = adjustmentHistories;
+//    }
+//    public Set<TrAdjustmentHistory> getAdjustmentHistories() {
+//        return adjustmentHistories;
+//    }
+//
+//    public void setAdjustmentHistories(Set<TrAdjustmentHistory> adjustmentHistories) {
+//        this.adjustmentHistories = adjustmentHistories;
+//    }
 }

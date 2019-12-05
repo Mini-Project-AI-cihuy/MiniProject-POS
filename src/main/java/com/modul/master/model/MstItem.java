@@ -17,11 +17,11 @@ public class MstItem {
     @Column(name="CATEGORY_ID")
     private int categoryId;
     @Column(name="created_by", nullable = true)
-    private int createdBy;
+    private Integer createdBy;
     @Column(name="created_on", nullable = true)
     private Date createdOn;
     @Column(name="modified_by", nullable = true)
-    private int modifiedBy;
+    private Integer modifiedBy;
     @Column(name="modified_on", nullable = true)
     private Date modifiedOn;
     @Column(name="active")
@@ -64,11 +64,11 @@ public class MstItem {
         this.categoryId = categoryId;
     }
 
-    public int getCreatedBy() {
+    public Integer getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -80,11 +80,11 @@ public class MstItem {
         this.createdOn = createdOn;
     }
 
-    public int getModifiedBy() {
+    public Integer getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(int modifiedBy) {
+    public void setModifiedBy(Integer modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 

@@ -1,9 +1,6 @@
 package com.modul.master.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -21,15 +18,22 @@ public class TrAdjustmentDetail {
     private int inStock;
     @Column(name = "actual_stock")
     private int actualStock;
-    @Column(name = "created_by")
-    private int createdBy;
-    @Column(name = "created_on")
+    @Column(name = "created_by", nullable = true)
+    private Integer createdBy;
+    @Column(name = "created_on", nullable = true)
     private Date createdOn;
-    @Column(name = "modified_by")
-    private int modifiedBy;
-    @Column(name = "modified_on")
+    @Column(name = "modified_by", nullable = true)
+    private Integer modifiedBy;
+    @Column(name = "modified_on", nullable = true)
     private Date modifiedOn;
 
+    @ManyToOne(targetEntity = TrAdjustment.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "adjustment_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private TrAdjustment adjustment;
+
+    @OneToOne(targetEntity = MstItemVariant.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "variant_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private MstItemVariant itemVariant;
 
     public int getId() {
         return id;
@@ -71,11 +75,11 @@ public class TrAdjustmentDetail {
         this.actualStock = actualStock;
     }
 
-    public int getCreatedBy() {
+    public Integer getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(int createdBy) {
+    public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -87,11 +91,11 @@ public class TrAdjustmentDetail {
         this.createdOn = createdOn;
     }
 
-    public int getModifiedBy() {
+    public Integer getModifiedBy() {
         return modifiedBy;
     }
 
-    public void setModifiedBy(int modifiedBy) {
+    public void setModifiedBy(Integer modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
 
@@ -101,5 +105,21 @@ public class TrAdjustmentDetail {
 
     public void setModifiedOn(Date modifiedOn) {
         this.modifiedOn = modifiedOn;
+    }
+
+    public TrAdjustment getAdjustment() {
+        return adjustment;
+    }
+
+    public void setAdjustment(TrAdjustment adjustment) {
+        this.adjustment = adjustment;
+    }
+
+    public MstItemVariant getItemVariant() {
+        return itemVariant;
+    }
+
+    public void setItemVariant(MstItemVariant itemVariant) {
+        this.itemVariant = itemVariant;
     }
 }
